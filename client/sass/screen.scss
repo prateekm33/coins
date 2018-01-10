@@ -1,0 +1,77 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+@import "variables";
+@import "dropdown";
+@import "primitives";
+
+html, body, #app, #top-container {
+  height : 100%;
+}
+
+#main-content { min-height : 100%; }
+
+.hidden {
+  display : none;
+}
+
+#header {
+  @include mainPadding();
+  background : #1d1b1b; // rgb(29, 27, 27)
+  color : white;
+  display : flex;
+  justify-content : space-between;
+  height : 40px;
+  align-items : center;
+  font-size : 26px;
+  font-weight : bold;
+}
+
+#auth-buttons {
+  margin-right : 30px;
+
+  button {
+    border : none;
+    height : 30px;
+    margin-left : 10px;
+    border-radius : 10px;
+    background : none;
+    color : white;
+    font-size : 15px;
+    font-weight : bold;
+  }
+}
+
+#loading-bar {
+  height : 3px;
+  background : #1d1b1b;
+}
+
+#loading-bar div {
+  background : radial-gradient(#b14a4a 40%, #d8c643);
+  width : 15%;
+  height : inherit;
+  max-width : 200px;
+}
+
+#main-content {
+  display : flex;
+  flex-flow : column nowrap;
+  @include setMediaFor(large-screens) {
+    flex-flow : row nowrap;
+  }
+}
+
+#user-display-container {
+  @include mainPadding();
+  padding-left : 15px;
+  padding-right : 15px;
+}
+
+@import "sideBar";
+@import "walletsPage";
+@import "walletPage";
+@import "transactions";

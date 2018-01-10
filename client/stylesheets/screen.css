@@ -1,0 +1,295 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 5, ../../../../../../../../../usr/local/lib/ruby/gems/2.4.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../../../../../../usr/local/lib/ruby/gems/2.4.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../../../../../../usr/local/lib/ruby/gems/2.4.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../../../../../../usr/local/lib/ruby/gems/2.4.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../../../../../../usr/local/lib/ruby/gems/2.4.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../../../../../../usr/local/lib/ruby/gems/2.4.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../../../../../../usr/local/lib/ruby/gems/2.4.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../../../../../../usr/local/lib/ruby/gems/2.4.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../../../../../../usr/local/lib/ruby/gems/2.4.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+
+/* line 1, ../sass/_dropdown.scss */
+.dropdown-container {
+  position: relative;
+}
+
+/* line 5, ../sass/_dropdown.scss */
+.dropdown-options {
+  position: absolute;
+  background: white;
+}
+
+/* line 1, ../sass/_primitives.scss */
+a {
+  text-decoration: none;
+}
+
+/* line 5, ../sass/_primitives.scss */
+.green {
+  color: green;
+}
+
+/* line 9, ../sass/_primitives.scss */
+.yellow {
+  color: yellow;
+}
+
+/* line 11, ../sass/screen.scss */
+html, body, #app, #top-container {
+  height: 100%;
+}
+
+/* line 15, ../sass/screen.scss */
+#main-content {
+  min-height: 100%;
+}
+
+/* line 17, ../sass/screen.scss */
+.hidden {
+  display: none;
+}
+
+/* line 21, ../sass/screen.scss */
+#header {
+  padding: 15px;
+  background: #1d1b1b;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+  align-items: center;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+/* line 33, ../sass/screen.scss */
+#auth-buttons {
+  margin-right: 30px;
+}
+/* line 36, ../sass/screen.scss */
+#auth-buttons button {
+  border: none;
+  height: 30px;
+  margin-left: 10px;
+  border-radius: 10px;
+  background: none;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+/* line 48, ../sass/screen.scss */
+#loading-bar {
+  height: 3px;
+  background: #1d1b1b;
+}
+
+/* line 53, ../sass/screen.scss */
+#loading-bar div {
+  background: radial-gradient(#b14a4a 40%, #d8c643);
+  width: 15%;
+  height: inherit;
+  max-width: 200px;
+}
+
+/* line 60, ../sass/screen.scss */
+#main-content {
+  display: flex;
+  flex-flow: column nowrap;
+}
+@media only screen and (min-width: 751px) {
+  /* line 60, ../sass/screen.scss */
+  #main-content {
+    flex-flow: row nowrap;
+  }
+}
+
+/* line 68, ../sass/screen.scss */
+#user-display-container {
+  padding: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* line 1, ../sass/_sideBar.scss */
+#side-bar {
+  color: white;
+  background: #1d1b1b;
+  padding: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+@media only screen and (min-width: 751px) {
+  /* line 1, ../sass/_sideBar.scss */
+  #side-bar {
+    padding-top: 20px;
+  }
+}
+
+/* line 13, ../sass/_sideBar.scss */
+#side-bar-nav {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0px;
+}
+/* line 19, ../sass/_sideBar.scss */
+#side-bar-nav li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+/* line 22, ../sass/_sideBar.scss */
+#side-bar-nav li .nav-list-item {
+  text-transform: capitalize;
+  text-decoration: none;
+  color: white;
+}
+@media only screen and (min-width: 751px) {
+  /* line 13, ../sass/_sideBar.scss */
+  #side-bar-nav {
+    flex-flow: column nowrap;
+  }
+}
+
+/* line 1, ../sass/_walletsPage.scss */
+.wallet-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+/* line 6, ../sass/_walletsPage.scss */
+.wallet-container:hover {
+  cursor: pointer;
+}
+
+/* line 1, ../sass/_walletPage.scss */
+#wallet-tools-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+/* line 1, ../sass/_transactions.scss */
+.txn-container {
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+/* line 4, ../sass/_transactions.scss */
+.txn-container div {
+  margin-bottom: 5px;
+}
+
+/* line 9, ../sass/_transactions.scss */
+.txn-blockhash, .txn-id, .txn-confirmations {
+  display: flex;
+  align-items: center;
+}
+/* line 13, ../sass/_transactions.scss */
+.txn-blockhash .label, .txn-id .label, .txn-confirmations .label {
+  margin-right: 30px;
+  min-width: 100px;
+}
+
+/* line 19, ../sass/_transactions.scss */
+.txn-blockhash a, .txn-id a {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: lightgrey;
+}
+/* line 22, ../sass/_transactions.scss */
+.txn-blockhash a:hover, .txn-id a:hover {
+  cursor: pointer;
+}
+
+/* line 25, ../sass/_transactions.scss */
+.txn-value {
+  font-weight: bold;
+}
+
+/* line 28, ../sass/_transactions.scss */
+.outgoing .txn-value {
+  color: red;
+}
+
+/* line 32, ../sass/_transactions.scss */
+.incoming .txn-value {
+  color: #19bb21;
+}
+
+/* line 36, ../sass/_transactions.scss */
+.address-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* line 41, ../sass/_transactions.scss */
+.status {
+  color: white;
+  padding: 7px;
+  background: green;
+}
+/* line 45, ../sass/_transactions.scss */
+.status .pending {
+  background: yellow;
+}

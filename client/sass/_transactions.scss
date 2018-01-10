@@ -1,0 +1,48 @@
+.txn-container {
+  font-size : 14px;
+  margin-bottom : 30px;
+  div {
+    margin-bottom : 5px;
+  }
+}
+
+.txn-blockhash, .txn-id, .txn-confirmations {
+  display : flex;
+  align-items : center;
+
+  .label {
+    margin-right : 30px;
+    min-width : 100px;
+  }
+}
+.txn-blockhash, .txn-id {
+  a {
+    @include setOverflow(ellipsis);
+    color : lightgrey;
+    &:hover { cursor: pointer; }
+  }
+}
+.txn-value {
+  font-weight : bold;
+}
+.outgoing .txn-value {
+  color : red;
+}
+
+.incoming .txn-value {
+  color : #19bb21;
+}
+
+.address-container {
+  display : flex;
+  justify-content : space-between;
+}
+
+.status {
+  color : white;
+  padding : 7px;
+  background : green;
+  .pending {
+    background : yellow;
+  }
+}

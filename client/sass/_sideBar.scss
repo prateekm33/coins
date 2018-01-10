@@ -1,0 +1,31 @@
+#side-bar {
+  color : white;
+  background : #1d1b1b;
+  @include mainPadding();
+  padding-top : 10px;
+  padding-bottom : 10px;
+
+  @include setMediaFor(large-screens) {
+    padding-top : 20px;
+  }
+}
+
+#side-bar-nav {
+  text-decoration : none;
+  color : white;
+  display : flex;
+  justify-content : space-between;
+  padding : 10px 0px;
+  li {
+    list-style : none;
+    margin-bottom : 10px;
+    .nav-list-item {
+      text-transform : capitalize;
+      text-decoration : none;
+      color : white;
+    }
+  }
+  @include setMediaFor(large-screens) {
+    flex-flow : column nowrap;
+  }
+}

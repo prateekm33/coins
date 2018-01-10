@@ -1,0 +1,29 @@
+{
+  "test" : [],
+
+  "urls" : {
+    "api" : {
+      "url" : "https://test.bitgo.com/api/v1"
+    },
+    "explorers" : {
+      "bitcoin" : "https://testnet.smartbit.com.au"
+    }
+  },
+
+  "routes" : {
+    "unauth" : {
+      "welcome" : "/",
+      "about" : "/about",
+      "support" : "/support",
+      "faq" : "/faq",
+      "community" : "/community"
+    },
+
+    "auth" : {
+      "wallets" : "/wallets",
+      "transactions" : "/transactions",
+      "history" : "/history",
+      "settings" : "/settings"
+    }
+  }
+}

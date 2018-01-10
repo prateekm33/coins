@@ -1,0 +1,26 @@
+$smallBreakpoint : 400px;
+$mediumBreakpoint : 750px;
+
+@mixin setMediaFor($media) {
+  @if $media == handhelds {
+    @media only screen and (max-width : $smallBreakpoint) { @content; }
+  }
+  @else if $media == medium-screens {
+    @media only screen and (min-width : $smallBreakpoint + 1) and (max-width : $mediumBreakpoint) { 
+      @content; 
+    }
+  }
+  @else if $media == large-screens {
+    @media only screen and (min-width : $mediumBreakpoint + 1) { @content; }
+  }
+}
+
+@mixin mainPadding() {
+  padding : 15px;
+}
+
+@mixin setOverflow($type) {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: $type;
+}

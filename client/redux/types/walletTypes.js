@@ -1,0 +1,4 @@
+export default {
+  LOAD_WALLETS : 'LOAD_WALLETS',
+  SET_ACTIVE_WALLET : 'SET_ACTIVE_WALLET'
+}

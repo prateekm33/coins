@@ -1,0 +1,28 @@
+{
+  "wallets" : [
+    {
+      "bitgo" : {},
+      "keychains" : [],
+      "wallet" : {
+        "id" : "1",
+        "label" : "Wallet 1",
+        "permissions" : "admin,spend,view",
+        "type" : "safehd"
+      }
+    },
+    {
+      "bitgo" : {},
+      "keychains" : [],
+      "wallet" : {
+        "id" : "2",
+        "label" : "Wallet 2",
+        "permissions" : "admin,spend,view",
+        "type" : "safehd"
+      }
+    }
+  ],
+
+  "start" : 0,
+  "count" : 2,
+  "total" : 4
+}

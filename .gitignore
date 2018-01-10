@@ -1,0 +1,7 @@
+.sass-cache/
+node_modules
+dist
+
+# uncomment if using api keys in config, and make sure to set up
+# an example.config.json
+# config.json

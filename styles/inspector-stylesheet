@@ -1,0 +1,47 @@
+ul li {
+    list-style: none;
+    margin-bottom: 25;
+}
+
+div#side-bar {
+    color: white;
+    background: #2b2929;
+    width: 5%;
+    min-width: 200px;
+    height: 100%;
+    padding-top: 20px;
+}
+
+ul#nav-list-container {
+    margin: 0;
+    -webkit-margin-before: 0;
+}
+
+div#loading-bar div {
+    background: radial-gradient(#b14a4a 40%, #d8c643);
+    width: 15%;
+    height: inherit;
+    max-width: 200px;
+}
+
+div#loading-bar {
+    height: 3;
+    background: #2b2929;
+}
+
+div#auth button {
+    border: none;
+    height: 30px;
+    margin-left: 10;
+    /* width: 100px; */
+    /* padding: 10px; */
+    border-radius: 10px;
+    background: none;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+div#auth {
+    margin-right: 30px;
+}

@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "devserver": "PORT=3000 node_modules/.bin/webpack-dev-server --config webpack/devServer.js -w",
-    "dev": "webpack --config webpack/dev.js -w",
+    "dev": "NODE_ENV=dev webpack --config webpack/dev.js -w",
     "dev:help": "webpack-dev-server --help"
   },
   "keywords": [],
@@ -36,6 +36,7 @@
     "webpack-merge": "4.1.1"
   },
   "devDependencies": {
+    "file-loader": "^1.1.6",
     "json-loader": "0.5.7",
     "webpack-dev-server": "2.9.7"
   },

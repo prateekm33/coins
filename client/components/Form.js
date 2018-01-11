@@ -13,7 +13,7 @@ export default Form extends React.Component {
   handleSubmit = evt => {
     evt.preventDefault();
     if (!this.formValid()) {
-      console.error("Form is invalid. Missing some parameters");
+      console._error("Form is invalid. Missing some parameters");
       return false;
     }
     this.props.handleSubmit(this.el);

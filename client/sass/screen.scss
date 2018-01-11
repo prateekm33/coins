@@ -5,14 +5,11 @@
 
 @import "compass/reset";
 @import "variables";
-@import "dropdown";
 @import "primitives";
 
 html, body, #app, #top-container {
   height : 100%;
 }
-
-#main-content { min-height : 100%; }
 
 .hidden {
   display : none;
@@ -28,6 +25,23 @@ html, body, #app, #top-container {
   align-items : center;
   font-size : 26px;
   font-weight : bold;
+
+  .dropdown-options {
+    position : absolute;
+    right : 0px;
+    border : 2px solid black;
+    padding : 10px;
+    color : black;
+    li:not(:last-child) {
+      margin-bottom : 25px;
+    }
+    li {
+      font-size : 15px;
+      &:hover {
+        cursor : pointer;
+      }
+    }
+  }
 }
 
 #auth-buttons {
@@ -60,6 +74,8 @@ html, body, #app, #top-container {
 #main-content {
   display : flex;
   flex-flow : column nowrap;
+  min-height : 100%;
+  position : relative;
   @include setMediaFor(large-screens) {
     flex-flow : row nowrap;
   }
@@ -69,8 +85,10 @@ html, body, #app, #top-container {
   @include mainPadding();
   padding-left : 15px;
   padding-right : 15px;
+  width : 100%;
 }
 
+@import "welcomePage";
 @import "sideBar";
 @import "walletsPage";
 @import "walletPage";

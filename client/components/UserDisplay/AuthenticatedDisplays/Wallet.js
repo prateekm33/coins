@@ -6,14 +6,14 @@ import {
   WalletReceive, 
   WalletSettings 
 } from './WalletDisplayItems';
-import { sendTransaction } from '../../../redux/actions/walletActions';
+import { sendTransaction, getTxns } from '../../../redux/actions/walletActions';
 
 class Wallet extends React.Component {
   constructor(props) {
     super(props);
     const self = this;
     this.toolsList = {
-      Transactions : () => WalletTransactions(this.state),
+      Transactions : () => WalletTransactions(this.state.txns, this.state.loadingTxns),
       Send : () => WalletSend(this),
       Receive : () => <WalletReceive addresses={this.state.addresses}/>,
       Settings : () => WalletSettings()
@@ -23,15 +23,19 @@ class Wallet extends React.Component {
       displayRenderFn : this.toolsList.Transactions,
       addresses : null,
       getUserPasscode : false,
-      denomination : 'btc'
+      denomination : 'btc',
+      loadingTxns : true
     };
   }
 
-  componentDidMount = () => this.getTxns();
+  componentDidMount = () => 
+    this.getTxns();
+    // this.props.dispatch(getTxns(this.props.wallet.wallet));
 
   componentWillReceiveProps = nextProps => {
     this.setState({ loadingTxns : true });
     this.getTxns(nextProps);
+    // this.props.dispatch(getTxns(nextProps.wallet.wallet));
   }
 
   verifyTransactionInputs = (formEl, evt) => {
@@ -59,12 +63,13 @@ class Wallet extends React.Component {
     });
   }
 
+  // delete after done implenting redux action for this
   getTxns = (props = this.props, startIndex = 0) => {
     const wallet = props.wallet.wallet;
     wallet.transactions({ skip : startIndex }).then(txns => {
       this.setState({ txns : txns.transactions, loadingTxns : false });
     }).catch(err => {
-      console.error("Error getting txns for wallet : ", wallet.id());
+      console._error("Error getting txns for wallet : ", wallet.id());
     });
     return null;
   }
@@ -72,12 +77,10 @@ class Wallet extends React.Component {
   handleToolsClick = option => {
     if (option === "Receive") {
       this.props.wallet.addresses().then(addresses => {
-        console.log("Address for wallet ", this.props.wallet.id());
-        console.log(addresses);
         // TODO -- query for more if necessary (also need to set that up for wallets page)
         this.setState({ addresses : addresses.addresses });
       }).catch(err => {
-        console.error("Error getting addresses for wallet ", this.props.wallet.id());
+        console._error("Error getting addresses for wallet ", this.props.wallet.id());
       });
     }
     this.setState({ displayRenderFn : this.toolsList[option] });

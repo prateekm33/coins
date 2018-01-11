@@ -4,11 +4,11 @@ import Spinner from '../../Spinner';
 import Dropdown from '../../Dropdown';
 import Modal from '../../Modal';
 
-export const WalletTransactions = ({ txns, loadingTxns }) => {
+export const WalletTransactions = (txns, loadingTxns) => {
   return (
     <div className="txns-list">
       { 
-        loadingTxns ? <div>LOADING</div> :
+        loadingTxns ? <Spinner label="Loading transactions"/> :
           txns.map(txn => <Transaction key={txn.id} txn={txn}/>)
       }
     </div>

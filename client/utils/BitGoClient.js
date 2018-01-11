@@ -1,22 +1,62 @@
 import BitGo from 'bitgo';
 import { saveUserSession, clearUserSession } from './index';
+import store from '../redux/store';
+import { logUserIn } from '../redux/actions/userActions';
+import appTypes from '../redux/types/appTypes';
 
 class Client {
   initClient(opts) {
+    this.opts = opts;
     this.client = new BitGo.BitGo(opts);
-    this.client.session({}).then(res => {
-      console.log("session info for bitgo client : ", res, opts);
-      saveUserSession({ accessToken : opts.accessToken });
-    }).catch(err => {
-      console.error("Error initiatlizing session info : \n ", err, opts);
+    // if there is no access token saved, then we don't need to check for 
+    // the current user session
+    if (!opts.accessToken) {
       clearUserSession();
-    });
+      store.dispatch({
+        type : appTypes.LOADING,
+        appLoading : false
+      });
+      return;
+    }
 
-    return this.client.me({}).catch(err => null);
+    store.dispatch({
+      type : appTypes.LOADING,
+      appLoading : true
+    });
+    this.client.session({}).then(res => {
+      saveUserSession({ accessToken : opts.accessToken });
+      return this.client.me({})
+    })
+    .then(user => {
+      store.dispatch(logUserIn(user));
+      store.dispatch({
+        type : appTypes.LOADING,
+        appLoading : false
+      });
+    })
+    .catch(err => {
+      console._error("Error initializing session info : \n ", err, opts);
+      store.dispatch({
+        type : appTypes.LOADING,
+        appLoading : false
+      });
+      this.sanitizeClient();
+    });
   }
 
   wallets() {
     return this.client.wallets();
+  }
+
+  sanitizeClient() {
+    clearUserSession();
+    try {
+      this.client.logout({});
+    } catch (e) {
+      console._error("Error resetting client. Initiating hard reset. ", e);
+      delete this.opts.accessToken;
+      this.client = new BitGo.BitGo(this.opts);
+    }
   }
 }
 

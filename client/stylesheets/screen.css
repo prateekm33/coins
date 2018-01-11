@@ -67,17 +67,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   display: block;
 }
 
-/* line 1, ../sass/_dropdown.scss */
-.dropdown-container {
-  position: relative;
-}
-
-/* line 5, ../sass/_dropdown.scss */
-.dropdown-options {
-  position: absolute;
-  background: white;
-}
-
+/*BREAKPOINT VARIABLES*/
 /* line 1, ../sass/_primitives.scss */
 a {
   text-decoration: none;
@@ -93,22 +83,92 @@ a {
   color: yellow;
 }
 
-/* line 11, ../sass/screen.scss */
+/* line 13, ../sass/_primitives.scss */
+.back {
+  margin-bottom: 20px;
+}
+/* line 15, ../sass/_primitives.scss */
+.back:hover {
+  cursor: pointer;
+}
+
+/* line 20, ../sass/_primitives.scss */
+input {
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid black;
+  padding: 10px;
+}
+/* line 26, ../sass/_primitives.scss */
+input:focus {
+  border-bottom: 3px solid black;
+  outline: none;
+}
+
+/* line 32, ../sass/_primitives.scss */
+input[type=submit] {
+  border: 2px solid;
+}
+
+/* line 36, ../sass/_primitives.scss */
+h2 {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+/* line 41, ../sass/_primitives.scss */
+.backBtn {
+  width: 10px;
+  height: 10px;
+  border-left: 3px solid;
+  border-bottom: 3px solid;
+  transform: rotate(45deg);
+  margin-bottom: 10px;
+}
+/* line 49, ../sass/_primitives.scss */
+.backBtn:hover {
+  cursor: pointer;
+}
+
+/* line 52, ../sass/_primitives.scss */
+.spinner {
+  margin: 0 auto;
+  position: relative;
+  top: 100px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+/* line 60, ../sass/_primitives.scss */
+.spinner#content-busy {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+}
+
+/* line 67, ../sass/_primitives.scss */
+.dropdown-container {
+  position: relative;
+}
+
+/* line 71, ../sass/_primitives.scss */
+.dropdown-options {
+  position: absolute;
+  background: white;
+  z-index: 1000;
+}
+
+/* line 10, ../sass/screen.scss */
 html, body, #app, #top-container {
   height: 100%;
 }
 
-/* line 15, ../sass/screen.scss */
-#main-content {
-  min-height: 100%;
-}
-
-/* line 17, ../sass/screen.scss */
+/* line 14, ../sass/screen.scss */
 .hidden {
   display: none;
 }
 
-/* line 21, ../sass/screen.scss */
+/* line 18, ../sass/screen.scss */
 #header {
   padding: 15px;
   background: #1d1b1b;
@@ -120,12 +180,32 @@ html, body, #app, #top-container {
   font-size: 26px;
   font-weight: bold;
 }
+/* line 29, ../sass/screen.scss */
+#header .dropdown-options {
+  position: absolute;
+  right: 0px;
+  border: 2px solid black;
+  padding: 10px;
+  color: black;
+}
+/* line 35, ../sass/screen.scss */
+#header .dropdown-options li:not(:last-child) {
+  margin-bottom: 25px;
+}
+/* line 38, ../sass/screen.scss */
+#header .dropdown-options li {
+  font-size: 15px;
+}
+/* line 40, ../sass/screen.scss */
+#header .dropdown-options li:hover {
+  cursor: pointer;
+}
 
-/* line 33, ../sass/screen.scss */
+/* line 47, ../sass/screen.scss */
 #auth-buttons {
   margin-right: 30px;
 }
-/* line 36, ../sass/screen.scss */
+/* line 50, ../sass/screen.scss */
 #auth-buttons button {
   border: none;
   height: 30px;
@@ -137,13 +217,13 @@ html, body, #app, #top-container {
   font-weight: bold;
 }
 
-/* line 48, ../sass/screen.scss */
+/* line 62, ../sass/screen.scss */
 #loading-bar {
   height: 3px;
   background: #1d1b1b;
 }
 
-/* line 53, ../sass/screen.scss */
+/* line 67, ../sass/screen.scss */
 #loading-bar div {
   background: radial-gradient(#b14a4a 40%, #d8c643);
   width: 15%;
@@ -151,23 +231,77 @@ html, body, #app, #top-container {
   max-width: 200px;
 }
 
-/* line 60, ../sass/screen.scss */
+/* line 74, ../sass/screen.scss */
 #main-content {
   display: flex;
   flex-flow: column nowrap;
+  min-height: 100%;
+  position: relative;
 }
-@media only screen and (min-width: 751px) {
-  /* line 60, ../sass/screen.scss */
+@media (min-width: 769px) {
+  /* line 74, ../sass/screen.scss */
   #main-content {
     flex-flow: row nowrap;
   }
 }
 
-/* line 68, ../sass/screen.scss */
+/* line 84, ../sass/screen.scss */
 #user-display-container {
   padding: 15px;
   padding-left: 15px;
   padding-right: 15px;
+  width: 100%;
+}
+
+/* line 1, ../sass/_welcomePage.scss */
+#welcome-page {
+  display: flex;
+  flex-flow: column nowrap;
+  margin-top: 50px;
+}
+
+/* line 7, ../sass/_welcomePage.scss */
+#login-modal {
+  min-width: 400px;
+  display: flex;
+  align-self: center;
+}
+
+/* line 13, ../sass/_welcomePage.scss */
+#description-blurb {
+  margin-bottom: 30px;
+}
+
+/* line 17, ../sass/_welcomePage.scss */
+#login-btn {
+  margin-bottom: 30px;
+}
+/* line 19, ../sass/_welcomePage.scss */
+#login-btn:hover {
+  cursor: pointer;
+}
+
+/* line 23, ../sass/_welcomePage.scss */
+#login-form {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+}
+/* line 28, ../sass/_welcomePage.scss */
+#login-form #error-msg {
+  margin-bottom: 10px;
+  color: red;
+  font-weight: bold;
+  padding: 10px;
+  background: none;
+  border: 1px solid;
+  border-radius: 10px;
+}
+/* line 37, ../sass/_welcomePage.scss */
+#login-form #error-msg:hover {
+  color: white;
+  background: red;
+  cursor: pointer;
 }
 
 /* line 1, ../sass/_sideBar.scss */
@@ -178,7 +312,7 @@ html, body, #app, #top-container {
   padding-top: 10px;
   padding-bottom: 10px;
 }
-@media only screen and (min-width: 751px) {
+@media (min-width: 769px) {
   /* line 1, ../sass/_sideBar.scss */
   #side-bar {
     padding-top: 20px;
@@ -204,7 +338,7 @@ html, body, #app, #top-container {
   text-decoration: none;
   color: white;
 }
-@media only screen and (min-width: 751px) {
+@media (min-width: 769px) {
   /* line 13, ../sass/_sideBar.scss */
   #side-bar-nav {
     flex-flow: column nowrap;
@@ -229,6 +363,11 @@ html, body, #app, #top-container {
   margin-bottom: 30px;
 }
 
+/* line 8, ../sass/_walletPage.scss */
+#wallet-details-container #wallet-label, #wallet-details-container .wallet-balance {
+  font-weight: bold;
+}
+
 /* line 1, ../sass/_transactions.scss */
 .txn-container {
   font-size: 14px;
@@ -245,7 +384,7 @@ html, body, #app, #top-container {
   align-items: center;
 }
 /* line 13, ../sass/_transactions.scss */
-.txn-blockhash .label, .txn-id .label, .txn-confirmations .label {
+.txn-blockhash .txn-label, .txn-id .txn-label, .txn-confirmations .txn-label {
   margin-right: 30px;
   min-width: 100px;
 }
@@ -292,4 +431,9 @@ html, body, #app, #top-container {
 /* line 45, ../sass/_transactions.scss */
 .status .pending {
   background: yellow;
+}
+
+/* line 50, ../sass/_transactions.scss */
+.txns-list .spinner {
+  top: 10px;
 }

@@ -43,7 +43,8 @@ class Wallets extends React.Component {
   renderWalletListDropdown = () => {
     const activeWalletLabel = this.state.wallet ? this.state.wallet.label() : "Select a wallet";
     return (
-      <Dropdown activeLabel={activeWalletLabel}>
+      <Dropdown activeLabel={activeWalletLabel} 
+                ids={{ label : 'wallet-label'}}>
         {
          this.props.wallets.wallets.map(wallet => (
             <li key={`dd-list-item-${wallet.label()}`} onClick={() => this.navigateTo({ wallet })}>
@@ -75,7 +76,7 @@ class Wallets extends React.Component {
   render() {
     return (
       <div id="wallets-page">
-        { this.state.wallet && <button onClick={() => this.navigateTo()}>Back</button> }
+        { this.state.wallet && <div className="backBtn" onClick={() => this.navigateTo()}></div> }
         {
           !this.state.wallet && 
             <h2 style={{ display : 'flex', justifyContent : 'space-between', margin : '20px 0px'}}>

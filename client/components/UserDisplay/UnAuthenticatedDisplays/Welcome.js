@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import classnames from 'classnames';
+import config from '../../../../config';
 
 import { loginUser } from '../../../redux/actions/userActions';
-
+import Spinner from '../../Spinner';
 
 class Welcome extends React.Component {
   constructor(props) {
@@ -18,29 +20,85 @@ class Welcome extends React.Component {
     this.setState({ showLoginModal : true });
   }
 
+  getSignUpLink = () => {
+    switch (process.env.NODE_ENV) {
+      case 'prod' :
+      case 'production' :
+        return config.urls.bitgo.signup.prod;
+      case 'dev' : 
+      case 'development' :
+      default :
+        return config.urls.bitgo.signup.dev;
+    }
+  }
+
+  render() {
+    return (
+      <div id="welcome-page">
+        {
+          !this.state.showLoginModal &&
+            <h2 id="description-blurb">
+              WallaBit is an easy and intuitive user interface for managing your BitGo wallets. 
+            </h2>
+        }
+        {
+          !this.state.showLoginModal &&
+            <div>
+              <div id="login-btn" onClick={this.showLoginModal}>
+                Already an existing BitGo user? Click here!
+              </div>
+              <a style={{ marginBottom : '30px' }} href={this.getSignUpLink()} target='_blank'>
+                Not a BitGo user? Click here to create an account on BitGo!
+              </a>
+            </div>
+        }
+
+        {
+          this.state.showLoginModal && 
+            <LoginModalConnected
+            // onSubmit={this.onSubmit} 
+            //   saveFormEl={el => {
+            //     this.formEl = el;
+            //   }} 
+              // errors={this.state.errors} loading={this.props.loading}
+              />
+        }
+      </div>
+    );
+  }
+}
+
+// need to get BitGo client id/authorization to use OAuth API
+        // <button className="cta-signup">Sign up with BitGo!</button>
+
+class LoginModal extends React.Component { 
+  constructor(props) { 
+    super(props);
+    this.state = {
+      loginError : null
+    };
+  }
+
+  componentDidMount = () => {
+    this.formEl.username.focus();
+  }
+
   onSubmit = evt => {
     evt.preventDefault();
     const inputs = this.formEl.children;
-    const errors = this.validateInputs(inputs);
-    if (errors) {
-      this.setState({ errors });
-      return;
-    }
-
     const user = this.getUserInput(inputs);
-    this.props.dispatch(loginUser(user)).then(done => {
-      if (done) this.props.history.push('/wallets');
+
+    this.props.dispatch(loginUser(user)).then(res => {
+      console.warn('LOGIN MODAL : ', this.props);
+      if (!res.error) this.props.history.push('/wallets');
+      else {
+        /*
+        ** TODO - better error handling messages that
+        ** show detailed responses to user. 
+        */
+        this.setState({ loginError : res.msg });
+      }
     });
-  }
-
-  validateInputs = inputs => {
-    const errors = Array.prototype.slice.call(inputs).reduce((errors, input) => {
-      // TODO -- validate email as an additional feature
-      if (input.type === 'submit' || input.value) return errors;
-      return {...errors, [input.id] : true };
-    }, {});
-
-    return Object.keys(errors).length ? errors : null;
   }
 
   getUserInput = inputs => {
@@ -53,51 +111,41 @@ class Welcome extends React.Component {
   }
 
   render() {
+    const props = this.props;
+    const unInClassnames = classnames(props.errors && props.errors['username-input']);
+    const pwInClassnames = classnames(props.errors && props.errors['password-input']);
+    const otpInClassnames = classnames(props.errors && props.errors['otp-input']);
     return (
-      <div id="welcome-page">
-        <div id="description-blurb">
-          WallaBit is an easy and intuitive user interface for managing your BitGo wallets. 
-        </div>
-        <div id="login-btn" onClick={this.showLoginModal}>
-          Already an existing BitGo user?
-        </div>
-
+      <div id="login-modal">
         {
-          this.state.showLoginModal && 
-            <LoginModal onSubmit={this.onSubmit} 
-              saveFormEl={el => this.formEl = el} 
-              errors={this.state.errors} />
+          !props.loading ?
+            <form id="login-form" onSubmit={this.onSubmit} ref={el => this.formEl = el}>
+              { this.state.loginError &&
+                  <button onClick={() => this.setState({loginError : null})} id="error-msg">
+                    {this.state.loginError}
+                  </button> 
+              }
+              <input
+                placeholder="username/email" type="text" required
+                id="username-input" name="username" className={unInClassnames}/>
+              <input 
+                placeholder="password" type="password"  required
+                id="password-input" className={pwInClassnames}/>
+              <input 
+                placeholder="OTP/Google Authenticator Code" type="text"
+                id="otp-input" classnames={otpInClassnames} required/>
+              <input type="submit" value="Log In" />
+            </form>
+            : <Spinner label={"Logging in"}/> 
         }
       </div>
     );
   }
 }
 
-// need to get BitGo client id/authorization to use OAuth API
-        // <button className="cta-signup">Sign up with BitGo!</button>
+const mapStateToProps = state => ({
+  loading : state.verifyingUser
+});
+const LoginModalConnected = withRouter(connect(mapStateToProps)(LoginModal));
 
-const LoginModal = props => {
-  const unInClassnames = classnames(props.errors && props.errors['username-input']);
-  const pwInClassnames = classnames(props.errors && props.errors['password-input']);
-  const otpInClassnames = classnames(props.errors && props.errors['otp-input']);
-  return (
-    <div id="login-modal">
-      {props.errors && <div id="login-error-msg"> The email and password combination does not match</div>}
-      <form id="login-form" onSubmit={props.onSubmit} ref={props.saveFormEl}>
-        <input 
-          placeholder="username/email" type="text" 
-          id="username-input" className={unInClassnames}/>
-        <input 
-          placeholder="password" type="password" 
-          id="password-input" className={pwInClassnames}/>
-        <input 
-          placeholder="OTP/Google Authenticator Code" type="text"
-          id="otp-input" classnames={otpInClassnames}/>
-        <input type="submit" value="Log In" />
-      </form>
-    </div>
-  );
-}
-
-
-export default connect()(Welcome);
+export default connect(mapStateToProps)(Welcome);

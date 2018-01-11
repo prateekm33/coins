@@ -24,7 +24,7 @@ export const sendTransaction = (form, wallet, denomination = 'btc') => {
         console.warn("sent txn : ", res);
       })
       .catch(err => {
-        console.error("error txn : ", err);
+        console._error("error txn : ", err);
       });
   }
 }

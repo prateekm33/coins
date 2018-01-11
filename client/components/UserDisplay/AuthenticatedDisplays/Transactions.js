@@ -27,11 +27,10 @@ class Transactions extends React.Component {
   getTxns = props => {
     props.wallet.transactions({})
       .then(txns => {
-        console.warn("transactions : ", txns);
         this.setState({ txns : txns.transactions });
       })
       .catch(err => {
-        console.error("Error getting transactions for wallet : ", props.wallet.id(), err);
+        console._error("Error getting transactions for wallet : ", props.wallet.id(), err);
       });
   }
 
@@ -160,16 +159,16 @@ export class Transaction extends React.Component {
           this.renderStrangersAddress()
         }</div>
         <div className="txn-blockhash">
-          <div className="label">Block</div>
+          <div className="txn-label">Block</div>
           <a href={`${config.urls.explorers['bitcoin']}/block/${txn.blockhash}`} target='_blank'>{txn.blockhash}</a>
         </div>
         <div className="txn-id">
-          <div className="label">Hash</div>
+          <div className="txn-label">Hash</div>
           <a href={`${config.urls.explorers['bitcoin']}/tx/${txn.id}`} target='_blank'>{txn.id}</a>
         </div>
         <div style={{ display : 'flex', justifyContent : 'space-between'}}>
           <div className="txn-confirmations">
-            <div className="label">Confirmations</div> 
+            <div className="txn-label">Confirmations</div> 
             <div className={txn.pending ? 'yellow' : 'green'}>{txn.confirmations}</div>
           </div>
 

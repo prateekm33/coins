@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
+import Spinner from './Spinner';
 
 import { requestWallets } from '../redux/actions/userActions';
 
@@ -25,8 +26,10 @@ class App extends React.Component {
         <Header user={this.props.user} />
         <div id="loading-bar"><div className={loadingClasses}></div></div>
         <div id="main-content">
-          <MenuBar />
-          <UserDisplay />
+          { !this.props.loading && <MenuBar /> }
+          { !this.props.loading && <UserDisplay /> }
+          { this.props.loading && <Spinner /> }
+          { this.props.contentBusy && <Spinner id="content-busy"/> }
         </div>
         <Footer />
       </div>
@@ -36,8 +39,10 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    mainLoadingBar : state.loading,
-    user : state.user
+    mainLoadingBar : state.appLoading,
+    user : state.user,
+    loading : state.appLoading,
+    contentBusy : state.contentBusy
   };
 }
 const ConnectedApp = connect(mapStateToProps)(App);

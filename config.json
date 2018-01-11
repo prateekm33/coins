@@ -2,11 +2,14 @@
   "test" : [],
 
   "urls" : {
-    "api" : {
-      "url" : "https://test.bitgo.com/api/v1"
-    },
     "explorers" : {
       "bitcoin" : "https://testnet.smartbit.com.au"
+    },
+    "bitgo" : {
+      "signup" : {
+        "prod" : "https://www.bitgo.com/wallet",
+        "dev" : "https://test.bitgo.com/wallet"
+      }
     }
   },
 

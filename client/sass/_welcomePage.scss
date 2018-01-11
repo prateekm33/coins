@@ -1,0 +1,43 @@
+#welcome-page {
+  display : flex;
+  flex-flow : column nowrap;
+  margin-top : 50px;
+}
+
+#login-modal {
+  min-width : 400px;
+  display : flex;
+  align-self : center;
+}
+
+#description-blurb {
+  margin-bottom : 30px;
+}
+
+#login-btn {
+  margin-bottom : 30px;
+  &:hover { cursor : pointer; }
+}
+
+
+#login-form {
+  display : flex;
+  flex-flow : column nowrap;
+  width : 100%;
+
+  #error-msg {
+    margin-bottom : 10px;
+    color : red;
+    font-weight : bold;
+    padding : 10px;
+    background : none;
+    border : 1px solid;
+    border-radius : 10px;
+
+    &:hover {
+      color : white;
+      background : red;
+      cursor : pointer;
+    }
+  }
+}

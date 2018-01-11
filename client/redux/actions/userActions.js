@@ -4,18 +4,33 @@ import bitgo from '../../utils/BitGoClient';
 import mockWallets from '../../mockData/wallets.json';
 import { saveUserSession } from '../../utils';
 
-
 export const loginUser = user => {
   return (dispatch, getState) => {
+    dispatch(loggingIn());
     return bitgo.client.authenticate(user).then(res => {
-      console.log('loginUser action : ', res);
       saveUserSession(res);
       dispatch(logUserIn(res.user));
-      return true;
+      return { error : false };
     }).catch(err => {
-      console.log("Error loggin in user : ", user);
-      console.error("Error : ", err);
-      return false;
+      let message;
+      switch (err.message) {
+        case 'invalid_grant' :
+          message = err.result.message;
+          break;
+        case 'invalid_client' :
+          message = "Username or password is incorrect";
+          break;
+        case 'needs_otp' :
+          message = "The one time password provided is incorrect";
+          break;
+        default :
+          message = "Error logging in. Check credentials and try again. If the problem persists, try again in a few minutes. There issue may be with the server";
+          break;
+      }
+      dispatch(loggingIn(false));
+      console._error("Error logging in user", err);
+      bitgo.sanitizeClient();
+      return { error : true, msg : message }
     });
   }
 }
@@ -27,7 +42,7 @@ export const logUserIn = user => {
   }
 }
 
-const userLoggedIn = user => {
+export const userLoggedIn = user => {
   return {
     type : userTypes.USER_LOGGED_IN,
     user
@@ -35,26 +50,38 @@ const userLoggedIn = user => {
 }
 
 // for loading state UI
-const loggingIn = () => {
+export const loggingIn = (loading = true) => {
   return {
-    type : userTypes.LOGGING_IN
+    type : userTypes.LOGGING_IN,
+    loading
   }
 }
 
-const loadWallets = wallets => {
+export const logoutUser = () => {
+  return (dispatch, getState) => {
+    dispatch({ type : userTypes.LOGGING_USER_OUT, loading : true });
+    bitgo.client.logout({}, err => {
+      bitgo.client = null;
+      if (err) console._error("Error logging out user ", err);
+      dispatch({ type : userTypes.USER_LOGGED_OUT });
+    });
+  }
+}
+
+export const loadWallets = wallets => {
   return {
     type : walletTypes.LOAD_WALLETS,
     wallets
   }
 }
 
-const requestWallets = (startIndex = 0, getbalances = true) => {
+export const requestWallets = (startIndex = 0, getbalances = true) => {
   return (dispatch, getState) => {
     const wallets = bitgo.wallets();
     wallets.list({ skip : startIndex, getbalances }).then(res => {
       dispatch(loadWallets(res));
     }).catch(err => {
-      console.log("Error fetching more wallets : ", err);
+      console._error("Error fetching more wallets : ", err);
     });
   }
 }

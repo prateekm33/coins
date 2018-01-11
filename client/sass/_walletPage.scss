@@ -3,3 +3,9 @@
   justify-content : space-between;
   margin-bottom : 30px;
 }
+
+#wallet-details-container {
+  #wallet-label, .wallet-balance {
+    font-weight : bold;
+  }
+}

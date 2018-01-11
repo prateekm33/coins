@@ -10,7 +10,7 @@
   display : flex;
   align-items : center;
 
-  .label {
+  .txn-label {
     margin-right : 30px;
     min-width : 100px;
   }
@@ -45,4 +45,8 @@
   .pending {
     background : yellow;
   }
+}
+
+.txns-list .spinner {
+  top : 10px;
 }

@@ -15,7 +15,8 @@ export default class Dropdown extends React.Component {
     this.setState({ activeLabel : opt.value, displayList : false });
   }
 
-  toggleList = () => {
+  toggleList = evt => {
+    if (evt.target.tagName.toUpperCase() !== 'LI') return;
     this.setState({ displayList : !this.state.displayList });
   }
 
@@ -32,15 +33,15 @@ export default class Dropdown extends React.Component {
   render() {
     const classNames = this.props.classNames || {};
     const ids = this.props.ids || {};
-    const ulClasses = classnames({
+    const ulClasses = classnames('dd-ref', {
       'dropdown-options' : true,
       'hidden' : !this.state.displayList
     }, classNames.ul);
 
     return (
-      <div className={classnames('dropdown', classNames.dropdown)}
+      <div className={classnames('dropdown', 'dd-ref', classNames.dropdown)}
            id={ids.dropdown || ''}>
-        <div className={classnames('dropdown-label', classNames.label)}
+        <div className={classnames('dropdown-label', 'dd-ref', classNames.label)}
              id={ids.label || ''}
              onClick={this.toggleList}>
           { this.renderLabel() }

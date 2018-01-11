@@ -9,3 +9,67 @@ a {
 .yellow {
   color : yellow;
 }
+
+.back {
+  margin-bottom : 20px;
+  &:hover {
+    cursor : pointer;
+  }
+}
+
+input {
+  margin-bottom : 30px;
+  border : none;
+  border-bottom : 1px solid black;
+  padding : 10px;
+
+  &:focus {
+    border-bottom : 3px solid black;
+    outline : none;
+  }
+}
+
+input[type=submit] {
+  border : 2px solid;
+}
+
+h2 {
+  font-weight : bold;
+  font-size : 20px;
+}
+
+.backBtn {
+  width : 10px;
+  height : 10px;
+  border-left : 3px solid;
+  border-bottom : 3px solid;
+  transform : rotate(45deg);
+  margin-bottom : 10px;
+
+  &:hover { cursor : pointer; }
+}
+
+.spinner {
+  margin : 0 auto;
+  position : relative;
+  top : 100px;
+  display : flex;
+  flex-flow : column nowrap;
+  align-items : center;
+
+  &#content-busy {
+    position : absolute;
+    top : 25%;
+    left : 50%;
+  }
+}
+
+.dropdown-container {
+  position : relative;
+}
+
+.dropdown-options {
+  position : absolute;
+  background : white;
+  z-index : $max-z-index;
+}

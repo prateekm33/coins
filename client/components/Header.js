@@ -1,5 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import Dropdown from './Dropdown';
 
@@ -11,7 +12,7 @@ const Header = props => {
         WALLABIT
       </div>
 
-      { props.user ? <ProfileDropdown /> : <AuthButtons /> }
+      { props.user && <ProfileDropdown /> }
     </div>
   );
 }
@@ -23,7 +24,8 @@ class _ProfileDropdown extends React.Component {
     this.options = [
       'ACCOUNT', // this and settings may be the same thing
       'HISTORY',
-      'SETTINGS'
+      'SETTINGS',
+      'LOGOUT'
     ];
 
     this.state = { activeLabel : this.options[0] };
@@ -31,10 +33,11 @@ class _ProfileDropdown extends React.Component {
 
   selectDropdownItem = op => {
     this.setState({ activeLabel : op });
+    this.props.history.push(`/${op.toLowerCase()}`);
   }
 
   renderAvatar = () => {
-    return <div>temp avatar</div>
+    return <div>Profile</div>
   }
 
   render() {
@@ -49,25 +52,9 @@ class _ProfileDropdown extends React.Component {
         }
       </Dropdown>
     )
-    return (
-      <div id="profile-dropdown" className="dropdown-container">
-        <div className="dropdown-button">
-          PROFILE_AVATAR
-        </div>
-        <ul className="dropdown-options">
-          {
-            this.options.map(op => (
-              <li key={`pf-dd-list-item:${op}`}>
-                { op.toUpperCase() }
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-    );
   }
 }
-const ProfileDropdown = connect()(_ProfileDropdown);
+const ProfileDropdown = withRouter(connect()(_ProfileDropdown));
 
 class _AuthButtons extends React.Component {
   constructor(props) {

@@ -1,9 +1,17 @@
-$smallBreakpoint : 400px;
-$mediumBreakpoint : 750px;
+$max-z-index : 1000;
+
+/*BREAKPOINT VARIABLES*/
+$smallBreakpoint : 480px;
+$mediumBreakpoint : 768px;
 
 @mixin setMediaFor($media) {
   @if $media == handhelds {
-    @media only screen and (max-width : $smallBreakpoint) { @content; }
+    @media (max-width: $smallBreakpoint) {
+      
+      @content;
+      
+    }
+
   }
   @else if $media == medium-screens {
     @media only screen and (min-width : $smallBreakpoint + 1) and (max-width : $mediumBreakpoint) { 
@@ -11,7 +19,12 @@ $mediumBreakpoint : 750px;
     }
   }
   @else if $media == large-screens {
-    @media only screen and (min-width : $mediumBreakpoint + 1) { @content; }
+
+    @media (min-width: $mediumBreakpoint + 1) {
+      
+      @content;
+      
+    }
   }
 }
 

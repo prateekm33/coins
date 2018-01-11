@@ -3,51 +3,7 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import config from '../../../config';
 
-// import Welcome from './UnAuthenticatedDisplays/Welcome';
-// import About from './UnAuthenticatedDisplays/About';
-// import Support from './UnAuthenticatedDisplays/Support';
-// import FAQ from './UnAuthenticatedDisplays/FAQ';
-// import Community from './UnAuthenticatedDisplays/Community';
-
-// import Wallets from './AuthenticatedDisplays/Wallets';
-// import Transactions from './AuthenticatedDisplays/Transactions';
-// import History from './AuthenticatedDisplays/History';
-// import Settings from './AuthenticatedDisplays/Settings';
-
-// const routesToCompMap = {
-//   unauth : {
-//     [config.routes.unauth.welcome] : Welcome
-//     [config.routes.unauth.about] : About,
-//     [config.routes.unauth.support] : Support,
-//     [config.routes.unauth.faq] : FAQ,
-//     [config.routes.unauth.community] : Community,
-//   },
-//   // auth gated routes
-//   auth : {
-//     [config.routes.auth.wallets] : Wallets,
-//     [config.routes.auth.transactions] : Transactions,
-//     [config.routes.auth.history] : History,
-//     [config.routes.auth.settings] : Settings
-//   }
-// };
-
-
-// const routesToCompMap = {
-//   unauth : [
-//     config.routes.unauth.welcome,
-//     config.routes.unauth.about,
-//     config.routes.unauth.support,
-//     config.routes.unauth.faq,
-//     config.routes.unauth.communit]
-//   ],
-
-//   auth : [
-//     config.routes.auth.wallets,
-//     config.routes.auth.transactions,
-//     config.routes.auth.history,
-//     config.routes.auth.settings
-//   ]
-// }
+import { logoutUser } from '../../redux/actions/userActions';
 
 const routesToCompMap = (() => {
   const map = {};
@@ -71,6 +27,10 @@ const UserDisplay = props => {
       <Switch>
         { renderRoutes(props, routesToCompMap.unauth) }
         { renderRoutes(props, routesToCompMap.auth) }
+        <Route exact path="/logout" render={renderProps => {
+          props.dispatch(logoutUser());
+          return <Redirect to={{ pathname : config.routes.unauth.welcome }}/>
+        }} />
       </Switch>
     </div>
   );

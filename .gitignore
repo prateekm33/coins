@@ -1,6 +1,7 @@
 .sass-cache/
 node_modules
 dist
+.DS_Store
 
 # uncomment if using api keys in config, and make sure to set up
 # an example.config.json

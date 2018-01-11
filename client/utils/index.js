@@ -9,7 +9,7 @@ export const clearUserSession = () => {
 
 // export const eventTypes = {
 //   CLOSE_DROPDOWNS : 'CLOSE_DROPDOWNS'
-}
+// }
 // export const events = {
 //   closeDropdowns : (
 //     // new CustomEvent(eventTypes.CLOSE_DROPDOWNS, { detail : })

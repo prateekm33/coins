@@ -19,11 +19,14 @@ class Client {
       return;
     }
 
+    // this is mainly for UX loading displays right now
+    // but functionality can be extended to more functions dependent on 
+    // app state loading
     store.dispatch({
       type : appTypes.LOADING,
       appLoading : true
     });
-    this.client.session({}).then(res => {
+    return this.client.session({}).then(res => {
       saveUserSession({ accessToken : opts.accessToken });
       return this.client.me({})
     })
@@ -33,6 +36,7 @@ class Client {
         type : appTypes.LOADING,
         appLoading : false
       });
+      return user;
     })
     .catch(err => {
       console._error("Error initializing session info : \n ", err, opts);
@@ -41,6 +45,7 @@ class Client {
         appLoading : false
       });
       this.sanitizeClient();
+      return null;
     });
   }
 
@@ -50,7 +55,7 @@ class Client {
 
   sanitizeClient() {
     clearUserSession();
-    this.client.logout({})
+    return this.client.logout({})
       .catch(err => {
         console._error("Error resetting client. Initiating hard reset. ", err);
         delete this.opts.accessToken;

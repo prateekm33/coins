@@ -12,7 +12,9 @@ import { sendTransaction, getTxns } from '../../../redux/actions/walletActions';
 class Wallet extends React.Component {
   constructor(props) {
     super(props);
-    const self = this;
+
+    // this is a map of the tab options to the corresponding render functions/components
+    // see the `render` method for a clearer picture
     this.toolsList = {
       Transactions : () => 
         <Transactions wallet={this.props.wallet} loading={this.state.loadingTxns} showDropdown={false}/>,
@@ -20,6 +22,7 @@ class Wallet extends React.Component {
       Receive : () => <WalletReceive addresses={this.state.addresses}/>,
       Settings : () => WalletSettings()
     };
+    
     this.state = { 
       txns : [],
       displayRenderFn : this.toolsList.Transactions,

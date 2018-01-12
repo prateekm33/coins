@@ -24,9 +24,7 @@
 
     "auth" : {
       "wallets" : "/wallets",
-      "transactions" : "/transactions",
-      "history" : "/history",
-      "settings" : "/settings"
+      "transactions" : "/transactions"
     }
   }
 }

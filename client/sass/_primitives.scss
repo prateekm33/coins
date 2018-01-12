@@ -13,7 +13,9 @@ button {
   min-width : 75px;
   border-radius : 10px;
 
-  &:hover { cursor : pointer; }
+  &:hover { cursor : pointer; background: $secondary-color; }
+  &.active { cursor : default; }
+  &:focus { outline : none; }
 }
 
 input[type=submit] {
@@ -81,10 +83,12 @@ input {
     cursor : pointer;
     display : flex;
     flex-flow : row nowrap;
+    justify-content : space-between;
+    max-width : 200px;
     .down-arrow {
       margin-left : 10px;
-      height : 5px;
-      width : 5px;
+      height : 7px;
+      width : 7px;
       border-left : 1px solid;
       border-bottom : 1px solid;
       transform : rotate(-45deg);
@@ -103,12 +107,23 @@ input {
   z-index : $max-z-index;
   border : 2px solid black;
   padding : 10px;
-  max-height: 400px;
+  max-height: 200px;
   overflow: scroll;
   li { 
     cursor : pointer;
+    &:hover {
+      color : $primary-color;
+    }
   }
   li:not(:last-child) {
     margin-bottom : 25px;
+  }
+}
+
+.address {
+  color : $dark-primary-color;
+  font-weight : bold;
+  &:hover {
+    border-bottom : 2px solid;
   }
 }

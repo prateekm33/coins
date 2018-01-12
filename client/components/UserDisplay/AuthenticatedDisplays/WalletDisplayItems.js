@@ -1,9 +1,9 @@
 import React from 'react';
+import QRCode from 'qrcode';
 import { Transaction } from './Transactions';
 import Spinner from '../../Spinner';
 import Dropdown from '../../Dropdown';
 import Modal from '../../Modal';
-
 export const WalletTransactions = (txns, loadingTxns) => {
   return (
     <div className="txns-list">
@@ -16,10 +16,21 @@ export const WalletTransactions = (txns, loadingTxns) => {
 }
 
 export const WalletSend = self => {
-  const wallet = self.props.wallet,
-        handleSend = self.verifyTransactionInputs,
-        getUserPasscode = self.state.getUserPasscode;
   let formEl;
+  const wallet = self.props.wallet,
+        getUserPasscode = self.state.getUserPasscode;
+
+  const handleSend = (formEl, evt) => {
+    evt.preventDefault();
+    // validate inputs --- TODO
+    if ([formEl.address, formEl.amount]
+        .filter(input => !input.value).length) return false;
+
+    self.setState({ 
+      getUserPasscode : true,
+      sendTransactionForm : formEl
+    });
+  }
   return (
     <div id="wallet-send-display">
       {
@@ -54,9 +65,22 @@ export class WalletReceive extends React.Component {
     }
   }
 
+  componentDidMount = () => {
+    this.generateQRCode();
+  }
+
   componentWillReceiveProps = nextProps => {
     this.setState({
       activeAddress : nextProps.addresses ? nextProps.addresses[0].address : null
+    });
+
+    this.generateQRCode();
+  }
+
+  generateQRCode = (address = this.state.activeAddress) => {
+    if (!this.qrcanvas || !address) return;
+    QRCode.toCanvas(this.qrcanvas, address, err => {
+      if (err) console._error('Error generating QR code : ', err);
     });
   }
 
@@ -69,13 +93,26 @@ export class WalletReceive extends React.Component {
                 activeLabel={this.state.activeAddress}>
         {
           options.map(option => (
-            <li onClick={() => {
-              this.setState({ activeAddress : option });
+            <li key={`receive-address-item-${option.value}`} onClick={() => {
+              this.setState({ activeAddress : option.value });
+              this.generateQRCode(option.value);
             }}>{option.value}</li>
           ))
         }
       </Dropdown>
     );
+  }
+
+  renderContent = () => {
+    return (
+      <div>
+        { this.renderDropdown() }
+        <canvas style={{ minHeight : '300px', minWidth : '300px' }} ref={el => {
+          this.qrcanvas = el;
+          this.generateQRCode();
+        }} id="qr-code" />
+      </div>
+    )
   }
 
   render() {
@@ -85,7 +122,7 @@ export class WalletReceive extends React.Component {
           Deposit only BTC to this address. Depositing any other coin will result in a loss of funds and will be unrecoverable. 
         </div>
         {
-          this.props.addresses ? this.renderDropdown() : <Spinner />
+          this.props.addresses ? this.renderContent() : <Spinner />
         }
       </div>
     )

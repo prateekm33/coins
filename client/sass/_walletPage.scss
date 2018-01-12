@@ -16,6 +16,7 @@
     &.active {
       border-bottom : 3px solid $primary-color;
       font-weight : bold;
+      &:hover { cursor : default; background : none; }
     }
   }
 }
@@ -25,9 +26,17 @@
     font-weight : bold;
   }
 }
+.wallet-container {
+  display : flex;
+  justify-content : space-between;
+  margin-bottom : 10px;
+  padding : 15px;
 
-#wallets-list-container {
-  margin-top : 30px;
+  &:hover {
+    cursor : pointer;
+    background : $secondary-color;
+    border-radius : 10px;
+  }
 }
 
 #wallet-send-display {
@@ -55,5 +64,14 @@
   }
   form input:not([type=submit]) {
       min-width : 300px;
+  }
+}
+
+
+#wallet-receive-display {
+  .dropdown-label {
+    max-width : 350px;
+    border-bottom : 2px solid;
+    padding-bottom : 15px;
   }
 }

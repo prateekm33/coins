@@ -24,10 +24,10 @@ class App extends React.Component {
     return (
       <div id='top-container'>
         <Header user={this.props.user} />
-        <div id="loading-bar">
+        <div id="loading-bar" className={loadingClasses}>
           {
             this.props.loadingBar && 
-              <div className={loadingClasses}></div>
+              <div></div>
           }
         </div>
         <div id="main-content">

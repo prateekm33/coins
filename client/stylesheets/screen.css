@@ -90,46 +90,55 @@ button {
 /* line 16, ../sass/_primitives.scss */
 button:hover {
   cursor: pointer;
+  background: #b0d1e6;
+}
+/* line 17, ../sass/_primitives.scss */
+button.active {
+  cursor: default;
+}
+/* line 18, ../sass/_primitives.scss */
+button:focus {
+  outline: none;
 }
 
-/* line 19, ../sass/_primitives.scss */
+/* line 21, ../sass/_primitives.scss */
 input[type=submit] {
   border: 2px solid;
 }
 
-/* line 23, ../sass/_primitives.scss */
+/* line 25, ../sass/_primitives.scss */
 input {
   margin-bottom: 30px;
   border: none;
   border-bottom: 1px solid black;
   padding: 10px;
 }
-/* line 29, ../sass/_primitives.scss */
+/* line 31, ../sass/_primitives.scss */
 input:focus {
   border-bottom: 3px solid black;
   outline: none;
 }
 
-/* line 35, ../sass/_primitives.scss */
+/* line 37, ../sass/_primitives.scss */
 .green {
   color: green;
 }
 
-/* line 39, ../sass/_primitives.scss */
+/* line 41, ../sass/_primitives.scss */
 .yellow {
   color: yellow;
 }
 
-/* line 43, ../sass/_primitives.scss */
+/* line 45, ../sass/_primitives.scss */
 .back {
   margin-bottom: 20px;
 }
-/* line 45, ../sass/_primitives.scss */
+/* line 47, ../sass/_primitives.scss */
 .back:hover {
   cursor: pointer;
 }
 
-/* line 50, ../sass/_primitives.scss */
+/* line 52, ../sass/_primitives.scss */
 .backBtn {
   width: 10px;
   height: 10px;
@@ -138,12 +147,12 @@ input:focus {
   transform: rotate(45deg);
   margin-bottom: 10px;
 }
-/* line 58, ../sass/_primitives.scss */
+/* line 60, ../sass/_primitives.scss */
 .backBtn:hover {
   cursor: pointer;
 }
 
-/* line 61, ../sass/_primitives.scss */
+/* line 63, ../sass/_primitives.scss */
 .spinner {
   left: 45%;
   position: absolute;
@@ -152,56 +161,72 @@ input:focus {
   flex-flow: column nowrap;
   align-items: center;
 }
-/* line 69, ../sass/_primitives.scss */
+/* line 71, ../sass/_primitives.scss */
 .spinner#content-busy {
   position: absolute;
   top: 25%;
   left: 50%;
 }
 
-/* line 76, ../sass/_primitives.scss */
+/* line 78, ../sass/_primitives.scss */
 .dropdown {
   position: relative;
   min-width: 150px;
 }
-/* line 80, ../sass/_primitives.scss */
+/* line 82, ../sass/_primitives.scss */
 .dropdown .dropdown-label {
   cursor: pointer;
   display: flex;
   flex-flow: row nowrap;
+  justify-content: space-between;
+  max-width: 200px;
 }
-/* line 84, ../sass/_primitives.scss */
+/* line 88, ../sass/_primitives.scss */
 .dropdown .dropdown-label .down-arrow {
   margin-left: 10px;
-  height: 5px;
-  width: 5px;
+  height: 7px;
+  width: 7px;
   border-left: 1px solid;
   border-bottom: 1px solid;
   transform: rotate(-45deg);
   transition: transform 0.5s;
 }
-/* line 93, ../sass/_primitives.scss */
+/* line 97, ../sass/_primitives.scss */
 .dropdown .dropdown-label .down-arrow.up {
   transform: rotate(135deg);
 }
 
-/* line 100, ../sass/_primitives.scss */
+/* line 104, ../sass/_primitives.scss */
 .dropdown-options {
   position: absolute;
   background: white;
   z-index: 1000;
   border: 2px solid black;
   padding: 10px;
-  max-height: 400px;
+  max-height: 200px;
   overflow: scroll;
 }
-/* line 108, ../sass/_primitives.scss */
+/* line 112, ../sass/_primitives.scss */
 .dropdown-options li {
   cursor: pointer;
 }
-/* line 111, ../sass/_primitives.scss */
+/* line 114, ../sass/_primitives.scss */
+.dropdown-options li:hover {
+  color: #4a89b1;
+}
+/* line 118, ../sass/_primitives.scss */
 .dropdown-options li:not(:last-child) {
   margin-bottom: 25px;
+}
+
+/* line 123, ../sass/_primitives.scss */
+.address {
+  color: #205577;
+  font-weight: bold;
+}
+/* line 126, ../sass/_primitives.scss */
+.address:hover {
+  border-bottom: 2px solid;
 }
 
 @-webkit-keyframes loadingBar {
@@ -239,14 +264,15 @@ input:focus {
 /* line 11, ../sass/screen.scss */
 html, body, #app, #top-container {
   height: 100%;
+  min-width: 400px;
 }
 
-/* line 15, ../sass/screen.scss */
+/* line 16, ../sass/screen.scss */
 .hidden {
   display: none;
 }
 
-/* line 19, ../sass/screen.scss */
+/* line 20, ../sass/screen.scss */
 #header {
   padding: 15px;
   background: #1d1b1b;
@@ -258,15 +284,15 @@ html, body, #app, #top-container {
   font-size: 26px;
   font-weight: bold;
 }
-/* line 31, ../sass/screen.scss */
+/* line 32, ../sass/screen.scss */
 #header #profile-dropdown .dropdown-label {
   justify-content: flex-end;
 }
-/* line 33, ../sass/screen.scss */
+/* line 34, ../sass/screen.scss */
 #header #profile-dropdown .down-arrow {
   display: none;
 }
-/* line 35, ../sass/screen.scss */
+/* line 36, ../sass/screen.scss */
 #header #profile-dropdown .dropdown-options {
   position: absolute;
   right: 0px;
@@ -274,24 +300,24 @@ html, body, #app, #top-container {
   padding: 10px;
   color: black;
 }
-/* line 41, ../sass/screen.scss */
+/* line 42, ../sass/screen.scss */
 #header #profile-dropdown .dropdown-options li:not(:last-child) {
   margin-bottom: 25px;
 }
-/* line 44, ../sass/screen.scss */
+/* line 45, ../sass/screen.scss */
 #header #profile-dropdown .dropdown-options li {
   font-size: 15px;
 }
-/* line 46, ../sass/screen.scss */
+/* line 47, ../sass/screen.scss */
 #header #profile-dropdown .dropdown-options li:hover {
   cursor: pointer;
 }
 
-/* line 54, ../sass/screen.scss */
+/* line 55, ../sass/screen.scss */
 #auth-buttons {
   margin-right: 30px;
 }
-/* line 57, ../sass/screen.scss */
+/* line 58, ../sass/screen.scss */
 #auth-buttons button {
   border: none;
   height: 30px;
@@ -303,13 +329,17 @@ html, body, #app, #top-container {
   font-weight: bold;
 }
 
-/* line 69, ../sass/screen.scss */
+/* line 70, ../sass/screen.scss */
 #loading-bar {
   height: 3px;
+  background: #4a89b1;
+}
+/* line 73, ../sass/screen.scss */
+#loading-bar.loading {
   background: #1d1b1b;
 }
 
-/* line 74, ../sass/screen.scss */
+/* line 78, ../sass/screen.scss */
 #loading-bar div {
   background: radial-gradient(#4a89b1 40%, #abbfb8);
   width: 200px;
@@ -324,7 +354,7 @@ html, body, #app, #top-container {
   /* IE 10+, Fx 29+ */
 }
 
-/* line 84, ../sass/screen.scss */
+/* line 88, ../sass/screen.scss */
 #main-content {
   display: flex;
   flex-flow: column nowrap;
@@ -332,13 +362,13 @@ html, body, #app, #top-container {
   position: relative;
 }
 @media (min-width: 769px) {
-  /* line 84, ../sass/screen.scss */
+  /* line 88, ../sass/screen.scss */
   #main-content {
     flex-flow: row nowrap;
   }
 }
 
-/* line 94, ../sass/screen.scss */
+/* line 98, ../sass/screen.scss */
 #user-display-container {
   padding: 15px;
   padding-left: 15px;
@@ -431,22 +461,20 @@ html, body, #app, #top-container {
   text-decoration: none;
   color: white;
 }
+/* line 27, ../sass/_sideBar.scss */
+#side-bar-nav li .nav-list-item:hover:not(.active) {
+  color: #b0d1e6;
+}
+/* line 31, ../sass/_sideBar.scss */
+#side-bar-nav li .nav-list-item.active {
+  color: #4a89b1;
+  font-weight: bold;
+}
 @media (min-width: 769px) {
   /* line 13, ../sass/_sideBar.scss */
   #side-bar-nav {
     flex-flow: column nowrap;
   }
-}
-
-/* line 1, ../sass/_walletsPage.scss */
-.wallet-container {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-/* line 6, ../sass/_walletsPage.scss */
-.wallet-container:hover {
-  cursor: pointer;
 }
 
 /* line 1, ../sass/_walletPage.scss */
@@ -475,48 +503,69 @@ html, body, #app, #top-container {
   border-bottom: 3px solid #4a89b1;
   font-weight: bold;
 }
+/* line 19, ../sass/_walletPage.scss */
+#wallet-tools-container button.active:hover {
+  cursor: default;
+  background: none;
+}
 
-/* line 24, ../sass/_walletPage.scss */
+/* line 25, ../sass/_walletPage.scss */
 #wallet-details-container #wallet-label, #wallet-details-container .wallet-balance {
   font-weight: bold;
 }
 
 /* line 29, ../sass/_walletPage.scss */
-#wallets-list-container {
-  margin-top: 30px;
+.wallet-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 15px;
+}
+/* line 35, ../sass/_walletPage.scss */
+.wallet-container:hover {
+  cursor: pointer;
+  background: #b0d1e6;
+  border-radius: 10px;
 }
 
-/* line 33, ../sass/_walletPage.scss */
+/* line 42, ../sass/_walletPage.scss */
 #wallet-send-display {
   display: flex;
   justify-content: center;
 }
-/* line 37, ../sass/_walletPage.scss */
+/* line 46, ../sass/_walletPage.scss */
 #wallet-send-display form {
   display: flex;
   flex-flow: column nowrap;
   max-width: 400px;
   flex-grow: 1;
 }
-/* line 43, ../sass/_walletPage.scss */
+/* line 52, ../sass/_walletPage.scss */
 #wallet-send-display form #amount-input-container {
   display: flex;
   flex-flow: row nowrap;
   position: relative;
 }
-/* line 48, ../sass/_walletPage.scss */
+/* line 57, ../sass/_walletPage.scss */
 #wallet-send-display form #amount-input-container #amount-input {
   width: 100%;
 }
-/* line 49, ../sass/_walletPage.scss */
+/* line 58, ../sass/_walletPage.scss */
 #wallet-send-display form #amount-input-container label {
   position: absolute;
   right: 0;
   top: 10px;
 }
-/* line 56, ../sass/_walletPage.scss */
+/* line 65, ../sass/_walletPage.scss */
 #wallet-send-display form input:not([type=submit]) {
   min-width: 300px;
+}
+
+/* line 72, ../sass/_walletPage.scss */
+#wallet-receive-display .dropdown-label {
+  max-width: 350px;
+  border-bottom: 2px solid;
+  padding-bottom: 15px;
 }
 
 /* line 1, ../sass/_transactions.scss */
@@ -550,6 +599,7 @@ html, body, #app, #top-container {
 /* line 22, ../sass/_transactions.scss */
 .txn-blockhash a:hover, .txn-id a:hover {
   cursor: pointer;
+  border-bottom: 2px solid;
 }
 
 /* line 25, ../sass/_transactions.scss */
@@ -598,26 +648,21 @@ html, body, #app, #top-container {
 /* line 58, ../sass/_transactions.scss */
 #tab-options-container button {
   border: none;
-  border-bottom: 2px solid;
   padding: 5px 10px;
+  border-radius: 0;
+  margin-right: 10px;
 }
-/* line 62, ../sass/_transactions.scss */
+/* line 63, ../sass/_transactions.scss */
 #tab-options-container button.active {
-  border-bottom: 0;
-  border-top: 2px solid;
-  border-left: 2px solid;
-  border-right: 2px solid;
+  border-bottom: 2px solid #4a89b1;
+  font-weight: bold;
 }
-/* line 69, ../sass/_transactions.scss */
-#tab-options-container button:focus {
-  outline: none;
-}
-/* line 70, ../sass/_transactions.scss */
-#tab-options-container button:hover {
-  cursor: pointer;
+/* line 67, ../sass/_transactions.scss */
+#tab-options-container button.active:hover {
+  background: none;
 }
 
-/* line 74, ../sass/_transactions.scss */
+/* line 73, ../sass/_transactions.scss */
 .txns-list {
   margin-top: 30px;
 }

@@ -10,6 +10,7 @@
 
 html, body, #app, #top-container {
   height : 100%;
+  min-width : 400px;
 }
 
 .hidden {
@@ -18,7 +19,7 @@ html, body, #app, #top-container {
 
 #header {
   @include mainPadding();
-  background : #1d1b1b; // rgb(29, 27, 27)
+  background : $tertiary-color; // rgb(29, 27, 27)
   color : white;
   display : flex;
   justify-content : space-between;
@@ -68,11 +69,14 @@ html, body, #app, #top-container {
 
 #loading-bar {
   height : 3px;
-  background : #1d1b1b;
+  background : $primary-color;
+  &.loading {
+    background : $tertiary-color;
+  }
 }
 
 #loading-bar div {
-  background : radial-gradient(#4a89b1 40%, #abbfb8);
+  background : radial-gradient($primary-color 40%, #abbfb8);
   width : 200px;
   height : inherit;
   -webkit-animation : loadingBar 5s infinite; /* Safari 4+ */
@@ -100,6 +104,5 @@ html, body, #app, #top-container {
 
 @import "welcomePage";
 @import "sideBar";
-@import "walletsPage";
 @import "walletPage";
 @import "transactions";

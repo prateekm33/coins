@@ -47,10 +47,9 @@ export default class Dropdown extends React.Component {
 
   renderLabel = () => {
     switch (typeof this.props.activeLabel) {
-      case 'object' : 
       case 'string' : return this.props.activeLabel;
-
       case 'function' : return <this.props.activeLabel />
+      case 'object' :
       default : return null;
     }
   }

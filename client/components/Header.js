@@ -23,8 +23,6 @@ class _ProfileDropdown extends React.Component {
     super(props);
     this.options = [
       'ACCOUNT', // this and settings may be the same thing
-      'HISTORY',
-      'SETTINGS',
       'LOGOUT'
     ];
 

@@ -1,6 +1,6 @@
 #side-bar {
   color : white;
-  background : #1d1b1b;
+  background : $tertiary-color;
   @include mainPadding();
   padding-top : 10px;
   padding-bottom : 10px;
@@ -23,6 +23,15 @@
       text-transform : capitalize;
       text-decoration : none;
       color : white;
+      
+      &:hover:not(.active) {
+        color : $secondary-color;
+      }
+  
+      &.active {
+        color : $primary-color;
+        font-weight : bold;
+      }
     }
   }
   @include setMediaFor(large-screens) {

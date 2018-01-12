@@ -14,7 +14,7 @@ class Transactions extends React.Component {
     this.state = { 
       txns : [],
       activeIdx : 0,
-      loading : false
+      loading : props.loading
     };
     this.tabOptions = [
       "All Transactions",
@@ -33,11 +33,12 @@ class Transactions extends React.Component {
     if (!props.wallet) return;
     this.setState({ loading : true });
     props.wallet.transactions({})
-      .then(txns => {
+      .then(_txns => {
+        const txns = this.getTxnsToDisplay(_txns.transactions);
         this.setState({ 
-          txns : txns.transactions, 
           loading : false,
-          allTxns : txns.transactions 
+          allTxns : _txns.transactions,
+          txns
         });
       })
       .catch(err => {
@@ -47,21 +48,28 @@ class Transactions extends React.Component {
   }
 
   handleOptionClick = idx => {
-    this.setState({ activeIdx : idx });
+    const txns = this.getTxnsToDisplay(this.state.allTxns, idx);
+    this.setState({ activeIdx : idx, txns });
+  }
+
+  getTxnsToDisplay = (allTxns = [], idx = this.state.activeIdx) => {
     if (idx === 0) {
       // display all txns
-      this.setState({ txns : this.state.allTxns });
+      return allTxns;
+      // this.setState({ txns : this.state.allTxns });
     } else if (idx === 1) {
       // display only sent txns
-      this.setState({ txns : this.state.allTxns.filter(txn => !isOutgoingTxn(txn)) });
+      return allTxns.filter(isOutgoingTxn);
+      // this.setState({ txns : this.state.allTxns.filter(txn => isOutgoingTxn(txn)) });
     } else if (idx === 2) {
       // display only received txns
-      this.setState({ txns : this.state.allTxns.filter(isOutgoingTxn) });
+      return allTxns.filter(txn => !isOutgoingTxn(txn));
+      // this.setState({ txns : this.state.allTxns.filter(txn => !isOutgoingTxn(txn)) });
     }
   }
 
   renderTxns = () => {
-    const txns = this.state.txns.map(txn => <Transaction txn={txn} />);
+    const txns = this.state.txns.map(txn => <Transaction key={`transaction-${txn.id}`} txn={txn} />);
     return !this.state.loading ? 
       <div className="txns-list">{txns.length ? txns : "No transactions to show"}</div> :
       <Spinner label="Loading transactions"/>
@@ -114,12 +122,12 @@ class Transactions extends React.Component {
           If we are loading, then make sure to unmount any previously loaded txns by adding a boolean
           gate to the `this.renderTxns` call.
         */}
-        { !this.props.loading && this.props.wallet ? 
+        { !this.state.loading && this.props.wallet ? 
             this.props.showDropdown !== false && this.renderDropdown() : 
             <Spinner />
         }
         { this.renderTabs() }
-        { !this.props.loading && this.renderTxns() }
+        { !this.state.loading && this.renderTxns() }
       </div>
     );
   }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import config from '../../config';
 
 const AUTH_ITEMS = 'authItems';
@@ -25,7 +25,9 @@ class MenuBar extends React.Component {
   renderMenuItems(arrKey) {
     return this[arrKey].map(item => (
       <li key={item.url}>
-        <Link className="nav-list-item" to={item.url}>{item.title}</Link>
+        <Link className={`nav-list-item ${
+          this.props.location.pathname === item.url ? 'active' : ''
+        }`} to={item.url}>{item.title}</Link>
       </li>
     ));
   }
@@ -45,4 +47,4 @@ const mapStateToProps = state => ({
   user : state.user
 });
 
-export default connect(mapStateToProps)(MenuBar);
+export default withRouter(connect(mapStateToProps)(MenuBar));

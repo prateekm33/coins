@@ -3,7 +3,7 @@ a {
 }
 h2 {
   font-weight : bold;
-  font-size : 20px;
+  font-size : 24px;
   margin-bottom : 20px;
 }
 
@@ -85,6 +85,15 @@ input {
     flex-flow : row nowrap;
     justify-content : space-between;
     max-width : 200px;
+    font-weight : bold;
+    
+    &:not(.outlier) {
+      padding: 10px;
+      border: 2px solid #4a89b1;
+      border-radius: 10px;
+      background: rgba(74, 137, 177, 0.1607843);
+    }
+
     .down-arrow {
       margin-left : 10px;
       height : 7px;
@@ -109,6 +118,8 @@ input {
   padding : 10px;
   max-height: 200px;
   overflow: scroll;
+  top : 40px;
+  left : 0;
   li { 
     cursor : pointer;
     &:hover {

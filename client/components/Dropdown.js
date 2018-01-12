@@ -47,9 +47,9 @@ export default class Dropdown extends React.Component {
 
   renderLabel = () => {
     switch (typeof this.props.activeLabel) {
+      case 'object' : // TODO -- find a better way to handle non DOM objects
       case 'string' : return this.props.activeLabel;
       case 'function' : return <this.props.activeLabel />
-      case 'object' :
       default : return null;
     }
   }
@@ -70,11 +70,11 @@ export default class Dropdown extends React.Component {
              onClick={this.toggleList}>
           <div>{ this.renderLabel() }</div>
           <div className="down-arrow" ref={el => this.downArrow = el}/>
+          <ul className={ulClasses} id={ids.options || ''} 
+              ref={el => this.ul = el} onClick={this.toggleList}>
+              { this.props.children }
+          </ul>
         </div>
-        <ul className={ulClasses} id={ids.options || ''} 
-            ref={el => this.ul = el} onClick={this.toggleList}>
-            { this.props.children }
-        </ul>
       </div>
     );
   }

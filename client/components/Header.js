@@ -40,7 +40,7 @@ class _ProfileDropdown extends React.Component {
 
   render() {
     return (
-      <Dropdown activeLabel={this.renderAvatar()} ids={{ dropdown : 'profile-dropdown' }}>
+      <Dropdown activeLabel={this.renderAvatar()} ids={{ dropdown : 'profile-dropdown' }} classNames={{label : 'outlier'}}>
         {
           this.options.map(op => (
             <li key={`pf-dd-list-item:${op}`} onClick={() => this.selectDropdownItem(op)}>
@@ -53,21 +53,5 @@ class _ProfileDropdown extends React.Component {
   }
 }
 const ProfileDropdown = withRouter(connect()(_ProfileDropdown));
-
-class _AuthButtons extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div id='auth-buttons'>
-        <button>Log In</button>
-        <button>Sign up</button>
-      </div>
-    );
-  }
-}
-const AuthButtons = connect()(_AuthButtons);
 
 export default Header;

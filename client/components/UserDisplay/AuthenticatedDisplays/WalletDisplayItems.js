@@ -4,6 +4,7 @@ import { Transaction } from './Transactions';
 import Spinner from '../../Spinner';
 import Dropdown from '../../Dropdown';
 import Modal from '../../Modal';
+
 export const WalletTransactions = (txns, loadingTxns) => {
   return (
     <div className="txns-list">
@@ -15,6 +16,7 @@ export const WalletTransactions = (txns, loadingTxns) => {
   );
 }
 
+// This component's argument is the component context within which it is called
 export const WalletSend = self => {
   let formEl;
   const wallet = self.props.wallet,
@@ -65,9 +67,7 @@ export class WalletReceive extends React.Component {
     }
   }
 
-  componentDidMount = () => {
-    this.generateQRCode();
-  }
+  componentDidMount = () => this.generateQRCode();
 
   componentWillReceiveProps = nextProps => {
     this.setState({
@@ -109,6 +109,7 @@ export class WalletReceive extends React.Component {
         { this.renderDropdown() }
         <canvas style={{ minHeight : '300px', minWidth : '300px' }} ref={el => {
           this.qrcanvas = el;
+          // generate the QR code for the first address seen as soon as this element mounts
           this.generateQRCode();
         }} id="qr-code" />
       </div>

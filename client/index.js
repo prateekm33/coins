@@ -8,6 +8,9 @@ import { logUserIn } from './redux/actions/userActions';
 
 import App from './components/App';
 
+// This is temporary, and should only be used in development mode
+// TODO - replace this function with a custom error handler that sends
+// messages to an error logger service
 window.console._error = (...args) => {
   switch ((process.env.NODE_ENV || '').toLowerCase()) {
     case 'prod':
@@ -20,6 +23,7 @@ window.console._error = (...args) => {
   }
 }
 
+// init the bitgo client first (this is asynchronous)
 bitgo.initClient(getClientOptions())
 const Main = (
   <Provider store={store}>
@@ -30,7 +34,9 @@ const Main = (
 );
 render(Main, document.getElementById('app'));
 
-
+// TODO -- add better handling for expired tokens and display that as a
+// message to the user
+// For now, the application will still handle expired tokens but does not show a message
 function getClientOptions() {
   let clientOptions = {
     accessToken : sessionStorage.getItem('uAT')

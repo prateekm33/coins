@@ -10,6 +10,9 @@ class MenuBar extends React.Component {
   constructor(props) {
     super(props);
 
+    /* The items defined in the menu bar are pulled from the config file,
+    ** similar to how the routes are generated in the `UserDisplay/index` file.
+    */
     this[UNAUTH_ITEMS] = initMenuItems(config.routes.unauth);
     this[AUTH_ITEMS] = initMenuItems(config.routes.auth);
 

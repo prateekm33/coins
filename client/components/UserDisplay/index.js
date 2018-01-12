@@ -5,6 +5,20 @@ import config from '../../../config';
 
 import { logoutUser } from '../../redux/actions/userActions';
 
+/*
+** This is where the client side Router for the application is configured.
+** When adding new routes to the application, make sure that the component files are defined 
+** in either the AuthenticatedDisplays dir or the UnAuthenticatedDisplays folder.
+**
+** Also ensure that the routes are defined in the config.json file within the root directory.
+**
+** `routesToCompMap` will read through the config file and find the appropriate component
+** file to import for that particular route. This map is then parsed below in the `renderRoutes`
+** function, which will generate an array of Routes to be returned.
+**
+** You may use this format, or explicitly state your routes as done below for the '/logout' route.
+**
+*/
 const routesToCompMap = (() => {
   const map = {};
   for (let routeType in config.routes) {

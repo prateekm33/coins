@@ -58,7 +58,6 @@ class Transactions extends React.Component {
       // display only received txns
       this.setState({ txns : this.state.allTxns.filter(isOutgoingTxn) });
     }
-    // TODO -- figure out how to display sent and received only
   }
 
   renderTxns = () => {
@@ -103,26 +102,44 @@ class Transactions extends React.Component {
 
   render() {
     return (
-      <div id="txns-page">
-        <h2 id="txns-page-header">Transactions</h2>
-        { this.props.wallet ? this.renderDropdown() : <Spinner />}
+      <div id="txns-page" style={{ position : 'relative' /* for the spinner */}}>
+        { this.props.showDropdown !== false && <h2 id="txns-page-header">Transactions</h2> }
+        {/*
+          The transactions component is also used in the wallet page. 
+          We use the props.showDropdown boolean to determine whether
+          we show the wallet labels or not.
+
+          Show the spinner if we are loading or if there is no selected wallet, because we are probably
+          still getting that data. 
+
+          If we are loading, then make sure to unmount any previously loaded txns by adding a boolean
+          gate to the `this.renderTxns` call.
+        */}
+        { !this.props.loading && this.props.wallet ? 
+            this.props.showDropdown !== false && this.renderDropdown() : 
+            <Spinner />
+        }
         { this.renderTabs() }
-        { this.renderTxns() }
+        { !this.props.loading && this.renderTxns() }
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, props) => {
   let wallets = state.wallets || {};
   wallets = wallets.wallets || [];
   return {
-    wallet : state.activeWallet || wallets[0],
+    wallet : props.wallet || state.activeWallet || wallets[0],
     wallets
   }
 };
 export default connect(mapStateToProps)(Transactions);
 
+
+/*
+** A single Transaction Component
+*/
 const INCOMING_TXN = 'INCOMING_TXN';
 const OUTGOING_TXN = 'OUTGOING_TXN';
 export class Transaction extends React.Component {

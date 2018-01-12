@@ -15,6 +15,7 @@
 
     &.active {
       border-bottom : 3px solid $primary-color;
+      font-weight : bold;
     }
   }
 }
@@ -22,5 +23,33 @@
 #wallet-details-container {
   #wallet-label, .wallet-balance {
     font-weight : bold;
+  }
+}
+
+#wallets-list-container {
+  margin-top : 30px;
+}
+
+#wallet-send-display {
+  form {
+    display : flex;
+    flex-flow : column nowrap;
+    max-width : 400px;
+
+    #amount-input-container {
+      display : flex;
+      flex-flow : row nowrap;
+      position : relative;
+
+      #amount-input { width : 100%; }
+      label {
+        position : absolute;
+        right : 0;
+        top : 10px;
+      }
+    }
+  }
+  form input:not([type=submit]) {
+      min-width : 300px;
   }
 }

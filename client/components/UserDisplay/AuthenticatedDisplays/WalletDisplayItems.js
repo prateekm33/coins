@@ -36,9 +36,9 @@ export const WalletSend = self => {
         getUserPasscode &&
           <Modal close={() => self.setState({ getUserPasscode : false })}>
             <form onSubmit={evt => self.handleSendTransaction(evt)}>
-            <input placeholder="OTP" required name="otp" />
-            <input placeholder={"Enter wallet password"} name="walletPassphrase" id="walletPassphrase-input" required/>
-            <input type="submit" value="Send" />
+              <input placeholder="OTP" required name="otp" />
+              <input placeholder={"Enter wallet password"} name="walletPassphrase" id="walletPassphrase-input" required/>
+              <input type="submit" value="Send" />
             </form>
           </Modal>
       }

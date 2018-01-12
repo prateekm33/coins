@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Transactions from './Transactions';
 import { 
   WalletTransactions, 
   WalletSend, 
@@ -13,7 +14,9 @@ class Wallet extends React.Component {
     super(props);
     const self = this;
     this.toolsList = {
-      Transactions : () => WalletTransactions(this.state.txns, this.state.loadingTxns),
+      Transactions : () => 
+        <Transactions wallet={this.props.wallet} loading={this.state.loadingTxns} showDropdown={false}/>,
+        // WalletTransactions(this.state.txns, this.state.loadingTxns),
       Send : () => WalletSend(this),
       Receive : () => <WalletReceive addresses={this.state.addresses}/>,
       Settings : () => WalletSettings()

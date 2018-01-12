@@ -133,8 +133,8 @@ h2 {
 
 /* line 53, ../sass/_primitives.scss */
 .spinner {
-  margin: 0 auto;
-  position: relative;
+  left: 45%;
+  position: absolute;
   top: 100px;
   display: flex;
   flex-flow: column nowrap;
@@ -461,11 +461,44 @@ html, body, #app, #top-container {
 /* line 16, ../sass/_walletPage.scss */
 #wallet-tools-container button.active {
   border-bottom: 3px solid #4a89b1;
+  font-weight: bold;
 }
 
-/* line 23, ../sass/_walletPage.scss */
+/* line 24, ../sass/_walletPage.scss */
 #wallet-details-container #wallet-label, #wallet-details-container .wallet-balance {
   font-weight: bold;
+}
+
+/* line 29, ../sass/_walletPage.scss */
+#wallets-list-container {
+  margin-top: 30px;
+}
+
+/* line 34, ../sass/_walletPage.scss */
+#wallet-send-display form {
+  display: flex;
+  flex-flow: column nowrap;
+  max-width: 400px;
+}
+/* line 39, ../sass/_walletPage.scss */
+#wallet-send-display form #amount-input-container {
+  display: flex;
+  flex-flow: row nowrap;
+  position: relative;
+}
+/* line 44, ../sass/_walletPage.scss */
+#wallet-send-display form #amount-input-container #amount-input {
+  width: 100%;
+}
+/* line 45, ../sass/_walletPage.scss */
+#wallet-send-display form #amount-input-container label {
+  position: absolute;
+  right: 0;
+  top: 10px;
+}
+/* line 52, ../sass/_walletPage.scss */
+#wallet-send-display form input:not([type=submit]) {
+  min-width: 300px;
 }
 
 /* line 1, ../sass/_transactions.scss */

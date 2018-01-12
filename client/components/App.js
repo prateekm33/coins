@@ -36,7 +36,7 @@ class App extends React.Component {
           { this.props.loading && <Spinner /> }
           { this.props.contentBusy && <Spinner id="content-busy"/> }
         </div>
-        <Footer />
+        {/*<Footer />*/}
       </div>
     );
   }

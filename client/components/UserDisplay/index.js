@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import { Switch, Route, Redirect, withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import config from '../../../config';
 
@@ -45,6 +45,14 @@ const UserDisplay = props => {
           props.dispatch(logoutUser());
           return <Redirect to={{ pathname : config.routes.unauth.welcome }}/>
         }} />
+        <Route path="*" render={renderProps => {
+          return (
+            <div>
+              <div>Sorry! Could not find the page you were looking for.</div>
+              // <Link to={config.routes.unauth.welcome} />
+            </div>
+          );
+        }} />
       </Switch>
     </div>
   );
@@ -71,6 +79,8 @@ function renderRoutes(parentProps, map) {
         //Use `render` instead of `component` to load the component at the approp. 
         // route to avoid unmounting and remounting new instances of the components
         render={routeProps => {
+          // TODO -- handle routing to unauth pages when logged in
+          // for state persistence...
           if (isAuthRoute && !parentProps.user) { 
             return <Redirect to={{ pathname : config.routes.unauth.welcome }} />
           } else if (!isAuthRoute && parentProps.usser) {

@@ -36,6 +36,7 @@ input[type=submit] {
 h2 {
   font-weight : bold;
   font-size : 20px;
+  margin-bottom : 20px;
 }
 
 .backBtn {
@@ -64,12 +65,42 @@ h2 {
   }
 }
 
-.dropdown-container {
+.dropdown {
   position : relative;
+  min-width : 150px;
+
+  .dropdown-label {
+    cursor : pointer;
+    display : flex;
+    flex-flow : row nowrap;
+    .down-arrow {
+      margin-left : 10px;
+      height : 5px;
+      width : 5px;
+      border-left : 1px solid;
+      border-bottom : 1px solid;
+      transform : rotate(-45deg);
+      transition : transform 0.5s;
+
+      &.up {
+        transform : rotate(135deg);
+      }
+    }
+  }
 }
 
 .dropdown-options {
   position : absolute;
   background : white;
   z-index : $max-z-index;
+  border : 2px solid black;
+  padding : 10px;
+  max-height: 400px;
+  overflow: scroll;
+  li { 
+    cursor : pointer;
+  }
+  li:not(:last-child) {
+    margin-bottom : 25px;
+  }
 }

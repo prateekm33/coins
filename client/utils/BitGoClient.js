@@ -50,13 +50,12 @@ class Client {
 
   sanitizeClient() {
     clearUserSession();
-    try {
-      this.client.logout({});
-    } catch (e) {
-      console._error("Error resetting client. Initiating hard reset. ", e);
-      delete this.opts.accessToken;
-      this.client = new BitGo.BitGo(this.opts);
-    }
+    this.client.logout({})
+      .catch(err => {
+        console._error("Error resetting client. Initiating hard reset. ", err);
+        delete this.opts.accessToken;
+        this.client = new BitGo.BitGo(this.opts);
+      });
   }
 }
 

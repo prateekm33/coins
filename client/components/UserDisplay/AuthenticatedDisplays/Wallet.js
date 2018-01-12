@@ -24,7 +24,8 @@ class Wallet extends React.Component {
       addresses : null,
       getUserPasscode : false,
       denomination : 'btc',
-      loadingTxns : true
+      loadingTxns : true,
+      clicked : 'Transactions'
     };
   }
 
@@ -83,14 +84,18 @@ class Wallet extends React.Component {
         console._error("Error getting addresses for wallet ", this.props.wallet.id());
       });
     }
-    this.setState({ displayRenderFn : this.toolsList[option] });
+    this.setState({ displayRenderFn : this.toolsList[option], clicked : option });
   }
 
   renderToolsList = () => {
     const arr = [];
     for (let tab in this.toolsList) {
       arr.push(
-        <button onClick={() => this.handleToolsClick(tab)} key={`wallet-tools-tab-${tab}`}>{tab}</button>
+        <button onClick={() => this.handleToolsClick(tab)} 
+                key={`wallet-tools-tab-${tab}`}
+                className={this.state.clicked === tab ? 'active' : ''}>
+          {tab}
+        </button>
       );
     }
     return arr;

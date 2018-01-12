@@ -21,28 +21,23 @@ window.console._error = (...args) => {
 }
 
 bitgo.initClient(getClientOptions())
-// .then(user => {
-  // if (user) store.dispatch(logUserIn(user));
-  const Main = (
-    <Provider store={store}>
-      <BrowserRouter>
-        <Route path='/' component={App} />
-      </BrowserRouter>
-    </Provider>
-  );
-  render(Main, document.getElementById('app'));
-// });
+const Main = (
+  <Provider store={store}>
+    <BrowserRouter>
+      <Route path='/' component={App} />
+    </BrowserRouter>
+  </Provider>
+);
+render(Main, document.getElementById('app'));
 
 
 function getClientOptions() {
-  // const uAT = JSON.parse(sessionStorage.getItem('uAT'));
-  // const { accessToken, expires } = uAT;
   let clientOptions = {
     accessToken : sessionStorage.getItem('uAT')
   };
 
-  // if (process.env.NODE_ENV === 'prod' || process.env.NODE_ENV === 'production') 
-    // clientOptions.env = 'prod';
+  if (process.env.NODE_ENV === 'prod' || process.env.NODE_ENV === 'production') 
+    clientOptions.env = 'prod';
   
   return clientOptions;
 }

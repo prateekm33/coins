@@ -114,9 +114,10 @@ input[type=submit] {
 h2 {
   font-weight: bold;
   font-size: 20px;
+  margin-bottom: 20px;
 }
 
-/* line 41, ../sass/_primitives.scss */
+/* line 42, ../sass/_primitives.scss */
 .backBtn {
   width: 10px;
   height: 10px;
@@ -125,12 +126,12 @@ h2 {
   transform: rotate(45deg);
   margin-bottom: 10px;
 }
-/* line 49, ../sass/_primitives.scss */
+/* line 50, ../sass/_primitives.scss */
 .backBtn:hover {
   cursor: pointer;
 }
 
-/* line 52, ../sass/_primitives.scss */
+/* line 53, ../sass/_primitives.scss */
 .spinner {
   margin: 0 auto;
   position: relative;
@@ -139,36 +140,101 @@ h2 {
   flex-flow: column nowrap;
   align-items: center;
 }
-/* line 60, ../sass/_primitives.scss */
+/* line 61, ../sass/_primitives.scss */
 .spinner#content-busy {
   position: absolute;
   top: 25%;
   left: 50%;
 }
 
-/* line 67, ../sass/_primitives.scss */
-.dropdown-container {
+/* line 68, ../sass/_primitives.scss */
+.dropdown {
   position: relative;
+  min-width: 150px;
+}
+/* line 72, ../sass/_primitives.scss */
+.dropdown .dropdown-label {
+  cursor: pointer;
+  display: flex;
+  flex-flow: row nowrap;
+}
+/* line 76, ../sass/_primitives.scss */
+.dropdown .dropdown-label .down-arrow {
+  margin-left: 10px;
+  height: 5px;
+  width: 5px;
+  border-left: 1px solid;
+  border-bottom: 1px solid;
+  transform: rotate(-45deg);
+  transition: transform 0.5s;
+}
+/* line 85, ../sass/_primitives.scss */
+.dropdown .dropdown-label .down-arrow.up {
+  transform: rotate(135deg);
 }
 
-/* line 71, ../sass/_primitives.scss */
+/* line 92, ../sass/_primitives.scss */
 .dropdown-options {
   position: absolute;
   background: white;
   z-index: 1000;
+  border: 2px solid black;
+  padding: 10px;
+  max-height: 400px;
+  overflow: scroll;
+}
+/* line 100, ../sass/_primitives.scss */
+.dropdown-options li {
+  cursor: pointer;
+}
+/* line 103, ../sass/_primitives.scss */
+.dropdown-options li:not(:last-child) {
+  margin-bottom: 25px;
 }
 
-/* line 10, ../sass/screen.scss */
+@-webkit-keyframes loadingBar {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(800%);
+  }
+}
+@-moz-keyframes loadingBar {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(800%);
+  }
+}
+@-o-keyframes loadingBar {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(800%);
+  }
+}
+@keyframes loadingBar {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(800%);
+  }
+}
+/* line 11, ../sass/screen.scss */
 html, body, #app, #top-container {
   height: 100%;
 }
 
-/* line 14, ../sass/screen.scss */
+/* line 15, ../sass/screen.scss */
 .hidden {
   display: none;
 }
 
-/* line 18, ../sass/screen.scss */
+/* line 19, ../sass/screen.scss */
 #header {
   padding: 15px;
   background: #1d1b1b;
@@ -180,32 +246,40 @@ html, body, #app, #top-container {
   font-size: 26px;
   font-weight: bold;
 }
-/* line 29, ../sass/screen.scss */
-#header .dropdown-options {
+/* line 31, ../sass/screen.scss */
+#header #profile-dropdown .dropdown-label {
+  justify-content: flex-end;
+}
+/* line 33, ../sass/screen.scss */
+#header #profile-dropdown .down-arrow {
+  display: none;
+}
+/* line 35, ../sass/screen.scss */
+#header #profile-dropdown .dropdown-options {
   position: absolute;
   right: 0px;
   border: 2px solid black;
   padding: 10px;
   color: black;
 }
-/* line 35, ../sass/screen.scss */
-#header .dropdown-options li:not(:last-child) {
+/* line 41, ../sass/screen.scss */
+#header #profile-dropdown .dropdown-options li:not(:last-child) {
   margin-bottom: 25px;
 }
-/* line 38, ../sass/screen.scss */
-#header .dropdown-options li {
+/* line 44, ../sass/screen.scss */
+#header #profile-dropdown .dropdown-options li {
   font-size: 15px;
 }
-/* line 40, ../sass/screen.scss */
-#header .dropdown-options li:hover {
+/* line 46, ../sass/screen.scss */
+#header #profile-dropdown .dropdown-options li:hover {
   cursor: pointer;
 }
 
-/* line 47, ../sass/screen.scss */
+/* line 54, ../sass/screen.scss */
 #auth-buttons {
   margin-right: 30px;
 }
-/* line 50, ../sass/screen.scss */
+/* line 57, ../sass/screen.scss */
 #auth-buttons button {
   border: none;
   height: 30px;
@@ -217,21 +291,28 @@ html, body, #app, #top-container {
   font-weight: bold;
 }
 
-/* line 62, ../sass/screen.scss */
+/* line 69, ../sass/screen.scss */
 #loading-bar {
   height: 3px;
   background: #1d1b1b;
 }
 
-/* line 67, ../sass/screen.scss */
+/* line 74, ../sass/screen.scss */
 #loading-bar div {
-  background: radial-gradient(#b14a4a 40%, #d8c643);
-  width: 15%;
+  background: radial-gradient(#4a89b1 40%, #abbfb8);
+  width: 200px;
   height: inherit;
-  max-width: 200px;
+  -webkit-animation: loadingBar 5s infinite;
+  /* Safari 4+ */
+  -moz-animation: loadingBar 5s infinite;
+  /* Fx 5+ */
+  -o-animation: loadingBar 5s infinite;
+  /* Opera 12+ */
+  animation: loadingBar 5s infinite;
+  /* IE 10+, Fx 29+ */
 }
 
-/* line 74, ../sass/screen.scss */
+/* line 84, ../sass/screen.scss */
 #main-content {
   display: flex;
   flex-flow: column nowrap;
@@ -239,13 +320,13 @@ html, body, #app, #top-container {
   position: relative;
 }
 @media (min-width: 769px) {
-  /* line 74, ../sass/screen.scss */
+  /* line 84, ../sass/screen.scss */
   #main-content {
     flex-flow: row nowrap;
   }
 }
 
-/* line 84, ../sass/screen.scss */
+/* line 94, ../sass/screen.scss */
 #user-display-container {
   padding: 15px;
   padding-left: 15px;
@@ -360,10 +441,29 @@ html, body, #app, #top-container {
 #wallet-tools-container {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 30px;
+  margin: 30px 0;
+}
+/* line 5, ../sass/_walletPage.scss */
+#wallet-tools-container button {
+  border: none;
+  border-bottom: 1px solid #4a89b1;
+  padding-bottom: 10px;
+  flex-grow: 1;
+}
+/* line 10, ../sass/_walletPage.scss */
+#wallet-tools-container button:hover {
+  cursor: pointer;
+}
+/* line 14, ../sass/_walletPage.scss */
+#wallet-tools-container button:focus {
+  outline: none;
+}
+/* line 16, ../sass/_walletPage.scss */
+#wallet-tools-container button.active {
+  border-bottom: 3px solid #4a89b1;
 }
 
-/* line 8, ../sass/_walletPage.scss */
+/* line 23, ../sass/_walletPage.scss */
 #wallet-details-container #wallet-label, #wallet-details-container .wallet-balance {
   font-weight: bold;
 }
@@ -436,4 +536,35 @@ html, body, #app, #top-container {
 /* line 50, ../sass/_transactions.scss */
 .txns-list .spinner {
   top: 10px;
+}
+
+/* line 54, ../sass/_transactions.scss */
+#tab-options-container {
+  margin: 20px 0;
+}
+/* line 56, ../sass/_transactions.scss */
+#tab-options-container button {
+  border: none;
+  border-bottom: 2px solid;
+  padding: 5px 10px;
+}
+/* line 60, ../sass/_transactions.scss */
+#tab-options-container button.active {
+  border-bottom: 0;
+  border-top: 2px solid;
+  border-left: 2px solid;
+  border-right: 2px solid;
+}
+/* line 67, ../sass/_transactions.scss */
+#tab-options-container button:focus {
+  outline: none;
+}
+/* line 68, ../sass/_transactions.scss */
+#tab-options-container button:hover {
+  cursor: pointer;
+}
+
+/* line 72, ../sass/_transactions.scss */
+.txns-list {
+  margin-top: 30px;
 }

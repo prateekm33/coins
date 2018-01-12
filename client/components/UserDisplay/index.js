@@ -59,10 +59,10 @@ function renderRoutes(parentProps, map) {
         render={routeProps => {
           if (isAuthRoute && !parentProps.user) { 
             return <Redirect to={{ pathname : config.routes.unauth.welcome }} />
-          } else if (!isAuthRoute && parentProps.user) {
+          } else if (!isAuthRoute && parentProps.usser) {
             return <Redirect to={{ pathname : config.routes.auth.wallets }} />
           }
-
+          
           return <Component {...routeProps} />
         }}/>
     );

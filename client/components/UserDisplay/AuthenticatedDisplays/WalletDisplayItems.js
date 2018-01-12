@@ -50,13 +50,13 @@ export class WalletReceive extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeAddress : props.addresses ? props.addresses[0] : null
+      activeAddress : props.addresses ? props.addresses[0].address : null
     }
   }
 
   componentWillReceiveProps = nextProps => {
     this.setState({
-      activeAddress : nextProps.addresses ? nextProps.addresses[0] : null
+      activeAddress : nextProps.addresses ? nextProps.addresses[0].address : null
     });
   }
 
@@ -64,16 +64,24 @@ export class WalletReceive extends React.Component {
     const addresses = this.props.addresses;
     const options = addresses.map(add => ({ value : add.address }));
     return (
-      <Dropdown ids={{ dropdown : 'receivee-address-dd' }}
+      <Dropdown ids={{ dropdown : 'receive-address-dd' }}
                 options={options} 
-                activeLabel={(options[0] || {}).value}/>
+                activeLabel={this.state.activeAddress}>
+        {
+          options.map(option => (
+            <li onClick={() => {
+              this.setState({ activeAddress : option });
+            }}>{option.value}</li>
+          ))
+        }
+      </Dropdown>
     );
   }
 
   render() {
     return (
       <div id="wallet-receive-display">
-        <div id="deposit-warning-msg">
+        <div id="deposit-warning-msg" style={{ marginBottom : '30px'}}>
           Deposit only BTC to this address. Depositing any other coin will result in a loss of funds and will be unrecoverable. 
         </div>
         {

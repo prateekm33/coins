@@ -2,6 +2,7 @@
 node_modules
 dist
 .DS_Store
+todo.md
 
 # uncomment if using api keys in config, and make sure to set up
 # an example.config.json

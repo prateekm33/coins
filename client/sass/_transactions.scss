@@ -50,3 +50,25 @@
 .txns-list .spinner {
   top : 10px;
 }
+
+#tab-options-container {
+  margin : 20px 0;
+  button {
+    border : none;
+    border-bottom : 2px solid;
+    padding : 5px 10px;
+    &.active {
+      border-bottom: 0;
+      border-top: 2px solid;
+      border-left: 2px solid;
+      border-right: 2px solid;
+    }
+
+    &:focus { outline : none; }
+    &:hover { cursor : pointer; }
+  }
+}
+
+.txns-list {
+  margin-top : 30px;
+}

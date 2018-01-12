@@ -18,13 +18,18 @@ class App extends React.Component {
 
   render() {
     const loadingClasses = classnames({
-      loading : this.props.loading
+      loading : this.props.loadingBar
     });
 
     return (
       <div id='top-container'>
         <Header user={this.props.user} />
-        <div id="loading-bar"><div className={loadingClasses}></div></div>
+        <div id="loading-bar">
+          {
+            this.props.loadingBar && 
+              <div className={loadingClasses}></div>
+          }
+        </div>
         <div id="main-content">
           { !this.props.loading && <MenuBar /> }
           { !this.props.loading && <UserDisplay /> }
@@ -39,10 +44,10 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    mainLoadingBar : state.appLoading,
     user : state.user,
     loading : state.appLoading,
-    contentBusy : state.contentBusy
+    contentBusy : state.contentBusy,
+    loadingBar : state.appLoading || state.contentBusy || state.verifyingUser
   };
 }
 const ConnectedApp = connect(mapStateToProps)(App);

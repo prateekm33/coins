@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import classnames from 'classnames';
 import config from '../../../../config';
 import Address from '../../Address';
+import Spinner from '../../Spinner';
+import Dropdown from '../../Dropdown';
 
 import { setActiveWallet } from '../../../redux/actions/userActions';
 
@@ -11,7 +13,8 @@ class Transactions extends React.Component {
     super(props);
     this.state = { 
       txns : [],
-      activeIdx : 0
+      activeIdx : 0,
+      loading : false
     };
     this.tabOptions = [
       "All Transactions",
@@ -20,56 +23,91 @@ class Transactions extends React.Component {
     ];
   }
 
+  componentDidMount = () => this.getTxns();
+
   componentWillReceiveProps = nextProps => {
     if (nextProps.wallet !== this.props.wallet) this.getTxns(nextProps);
   }
 
-  getTxns = props => {
+  getTxns = (props = this.props) => {
+    if (!props.wallet) return;
+    this.setState({ loading : true });
     props.wallet.transactions({})
       .then(txns => {
-        this.setState({ txns : txns.transactions });
+        this.setState({ 
+          txns : txns.transactions, 
+          loading : false,
+          allTxns : txns.transactions 
+        });
       })
       .catch(err => {
         console._error("Error getting transactions for wallet : ", props.wallet.id(), err);
+        this.setState({ loading : false });
       });
-  }
-
-  renderTxns = () => {
-    const txns = this.state.txns.map(txn => <Transaction txn={txn} />);
-    return txns.length ? txns : <div>No transactions to show</div>
   }
 
   handleOptionClick = idx => {
     this.setState({ activeIdx : idx });
+    if (idx === 0) {
+      // display all txns
+      this.setState({ txns : this.state.allTxns });
+    } else if (idx === 1) {
+      // display only sent txns
+      this.setState({ txns : this.state.allTxns.filter(txn => !isOutgoingTxn(txn)) });
+    } else if (idx === 2) {
+      // display only received txns
+      this.setState({ txns : this.state.allTxns.filter(isOutgoingTxn) });
+    }
     // TODO -- figure out how to display sent and received only
+  }
+
+  renderTxns = () => {
+    const txns = this.state.txns.map(txn => <Transaction txn={txn} />);
+    return txns.length ? <div className="txns-list">{txns}</div> : (
+      this.state.loading ? <Spinner label="Loading transactions"/> : <div>No transactions to show</div>
+    );
+  }
+
+  renderTabs = () => {
+    return (
+      <div id="tab-options-container">
+        {
+          this.tabOptions.map((opt, idx) => {
+            const classname = classnames('tab-option', {
+              active : this.state.activeIdx === idx
+            });
+            return <button onClick={() => this.handleOptionClick(idx) } className={classname}>{opt}</button>
+          })
+        }
+      </div>
+    );
+  }
+
+  renderDropdown = () => {
+    return (
+      <Dropdown activeLabel={this.props.wallet.label() || this.props.wallet.id()} 
+                ids={{dropdown : 'wallets-options-dropdown'}}>
+        {
+          this.props.wallets.map(wallet => (
+            <li key={wallet.id()} onClick={() => {
+              this.props.dispatch(setActiveWallet(wallet));
+              // this.setState({ loading : true });
+            }}>
+              {wallet.label() || wallet.id()}
+            </li>
+          ))
+        }
+      </Dropdown>
+    );
   }
 
   render() {
     return (
       <div id="txns-page">
         <h2 id="txns-page-header">Transactions</h2>
-
-        <div id="tab-options-container">
-          {
-            this.tabOptions.map((opt, idx) => {
-              const classname = classnames('tab-option', {
-                active : this.state.activeIdx === idx
-              });
-              return <div onClick={() => this.handleOptionClick(idx) } className={classname}>{opt}</div>
-            })
-          }
-        </div>
-
-        <div id="wallets-options-dropdown" className="dropdown">
-          <div className="dropdown-label">{this.props.wallet.id()}</div>
-          <ul>
-            TODO --- WALLETS OPTIONS
-          </ul>
-        </div>
-
-        <div className="txns-list">
-          { this.renderTxns() }
-        </div>
+        { this.props.wallet ? this.renderDropdown() : <Spinner />}
+        { this.renderTabs() }
+        { this.renderTxns() }
       </div>
     );
   }
@@ -85,7 +123,6 @@ const mapStateToProps = state => {
 };
 export default connect(mapStateToProps)(Transactions);
 
-
 const INCOMING_TXN = 'INCOMING_TXN';
 const OUTGOING_TXN = 'OUTGOING_TXN';
 export class Transaction extends React.Component {
@@ -95,32 +132,11 @@ export class Transaction extends React.Component {
   }
 
   componentDidMount = () => {
-    this.setState({ isOutgoing : this.isOutgoingTxn(this.props) });
+    this.setState({ isOutgoing : isOutgoingTxn(this.props.txn) });
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ isOutgoing : this.isOutgoingTxn(nextProps) });
-  }
-
-  isOutgoingTxn = props => {
-    // prob safe to assume that once we find a txn
-    // that isMine, we can check the chain and qualify the txn type
-    for (let i = 0; i < props.txn.outputs.length; i++) {
-      if (props.txn.outputs[i].isMine) return checkType(props.txn.outputs[i]);
-    }
-
-    function checkType(output) {
-      switch (+output.chain) {
-        case 0 :
-        case 10:
-          return false;
-        case 1 :
-        case 11:
-          return true;
-        default : 
-          // TODO -- HANDLE ERROR (ALTHOUGH UNLIKELY TO HAPPEN)
-      }
-    }
+    this.setState({ isOutgoing : isOutgoingTxn(nextProps.txn) });
   }
 
   openBlockExplorer = (type, query) => {
@@ -178,3 +194,28 @@ export class Transaction extends React.Component {
     );
   }
 }
+
+
+/*
+** Helper functions below
+*/
+const isOutgoingTxn = txn => {
+    // prob safe to assume that once we find a txn
+    // that isMine, we can check the chain and qualify the txn type
+    for (let i = 0; i < txn.outputs.length; i++) {
+      if (txn.outputs[i].isMine) return checkType(txn.outputs[i]);
+    }
+
+    function checkType(output) {
+      switch (+output.chain) {
+        case 0 :
+        case 10:
+          return false;
+        case 1 :
+        case 11:
+          return true;
+        default : 
+          // TODO -- HANDLE ERROR (ALTHOUGH UNLIKELY TO HAPPEN)
+      }
+    }
+  }

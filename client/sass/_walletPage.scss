@@ -1,7 +1,22 @@
 #wallet-tools-container {
   display : flex;
   justify-content : space-between;
-  margin-bottom : 30px;
+  margin : 30px 0;
+  button {
+    border : none;
+    border-bottom : 1px solid $primary-color;
+    padding-bottom : 10px;
+    flex-grow : 1;
+    &:hover {
+      cursor : pointer;
+    }
+
+    &:focus { outline : none; }
+
+    &.active {
+      border-bottom : 3px solid $primary-color;
+    }
+  }
 }
 
 #wallet-details-container {

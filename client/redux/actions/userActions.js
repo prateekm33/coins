@@ -61,7 +61,7 @@ export const logoutUser = () => {
   return (dispatch, getState) => {
     dispatch({ type : userTypes.LOGGING_USER_OUT, loading : true });
     bitgo.client.logout({}, err => {
-      bitgo.client = null;
+      // bitgo.client = null;
       if (err) console._error("Error logging out user ", err);
       dispatch({ type : userTypes.USER_LOGGED_OUT });
     });
@@ -83,6 +83,13 @@ export const requestWallets = (startIndex = 0, getbalances = true) => {
     }).catch(err => {
       console._error("Error fetching more wallets : ", err);
     });
+  }
+}
+
+export const setActiveWallet = wallet => {
+  return {
+    type : walletTypes.SET_ACTIVE_WALLET,
+    wallet
   }
 }
 

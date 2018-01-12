@@ -1,0 +1,16 @@
+@-webkit-keyframes loadingBar {
+  0% { transform : translateX(-50%); }
+  100% { transform : translateX(800%); }
+}
+@-moz-keyframes loadingBar {
+  0% { transform : translateX(-50%); }
+  100% { transform : translateX(800%); }
+}
+@-o-keyframes loadingBar {
+  0% { transform : translateX(-50%); }
+  100% { transform : translateX(800%); }
+}
+@keyframes loadingBar {
+  0% { transform : translateX(-50%); }
+  100% { transform : translateX(800%); }
+}

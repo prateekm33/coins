@@ -55,13 +55,7 @@ class Welcome extends React.Component {
 
         {
           this.state.showLoginModal && 
-            <LoginModalConnected
-            // onSubmit={this.onSubmit} 
-            //   saveFormEl={el => {
-            //     this.formEl = el;
-            //   }} 
-              // errors={this.state.errors} loading={this.props.loading}
-              />
+            <LoginModalConnected />
         }
       </div>
     );
@@ -89,14 +83,16 @@ class LoginModal extends React.Component {
     const user = this.getUserInput(inputs);
 
     this.props.dispatch(loginUser(user)).then(res => {
-      console.warn('LOGIN MODAL : ', this.props);
       if (!res.error) this.props.history.push('/wallets');
       else {
         /*
         ** TODO - better error handling messages that
         ** show detailed responses to user. 
         */
-        this.setState({ loginError : res.msg });
+        this.setState({ loginError : res.msg }, () => {
+          this.formEl.username.focus();
+          console.log('active : ', document.activeElement);
+        });
       }
     });
   }
@@ -121,7 +117,8 @@ class LoginModal extends React.Component {
           !props.loading ?
             <form id="login-form" onSubmit={this.onSubmit} ref={el => this.formEl = el}>
               { this.state.loginError &&
-                  <button onClick={() => this.setState({loginError : null})} id="error-msg">
+                  <button onClick={evt => this.setState({loginError : null})} 
+                          id="error-msg" type="button">
                     {this.state.loginError}
                   </button> 
               }

@@ -34,14 +34,11 @@ class Transactions extends React.Component {
     this.setState({ loading : true });
     props.wallet.transactions({})
       .then(txns => {
-        console.warn("--------> also here'", this.state.loading);
-        // setTimeout(() => {
-          this.setState({ 
-            txns : txns.transactions, 
-            loading : false,
-            allTxns : txns.transactions 
-          });
-        // }, 1000);
+        this.setState({ 
+          txns : txns.transactions, 
+          loading : false,
+          allTxns : txns.transactions 
+        });
       })
       .catch(err => {
         console._error("Error getting transactions for wallet : ", props.wallet.id(), err);
@@ -78,7 +75,7 @@ class Transactions extends React.Component {
             const classname = classnames('tab-option', {
               active : this.state.activeIdx === idx
             });
-            return <button onClick={() => this.handleOptionClick(idx) } className={classname}>{opt}</button>
+            return <button key={`btn-tab-${opt}`} onClick={() => this.handleOptionClick(idx) } className={classname}>{opt}</button>
           })
         }
       </div>
@@ -93,8 +90,6 @@ class Transactions extends React.Component {
           this.props.wallets.map(wallet => (
             <li key={wallet.id()} onClick={() => {
               this.props.dispatch(setActiveWallet(wallet));
-              // this.setState({ loading : true });
-              console.warn("--------> here'");
             }}>
               {wallet.label() || wallet.id()}
             </li>

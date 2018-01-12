@@ -16,7 +16,6 @@ class Wallet extends React.Component {
     this.toolsList = {
       Transactions : () => 
         <Transactions wallet={this.props.wallet} loading={this.state.loadingTxns} showDropdown={false}/>,
-        // WalletTransactions(this.state.txns, this.state.loadingTxns),
       Send : () => WalletSend(this),
       Receive : () => <WalletReceive addresses={this.state.addresses}/>,
       Settings : () => WalletSettings()
@@ -32,28 +31,6 @@ class Wallet extends React.Component {
     };
   }
 
-  componentDidMount = () => 
-    this.getTxns();
-    // this.props.dispatch(getTxns(this.props.wallet.wallet));
-
-  componentWillReceiveProps = nextProps => {
-    this.setState({ loadingTxns : true });
-    this.getTxns(nextProps);
-    // this.props.dispatch(getTxns(nextProps.wallet.wallet));
-  }
-
-  verifyTransactionInputs = (formEl, evt) => {
-    evt.preventDefault();
-    // validate inputs --- TODO
-    if ([formEl.address, formEl.amount]
-        .filter(input => !input.value).length) return false;
-
-    this.setState({ 
-      getUserPasscode : true,
-      sendTransactionForm : formEl
-    });
-  }
-
   handleSendTransaction = evt => {
     evt.preventDefault();
     this.state.sendTransactionForm.walletPassphrase = evt.target.walletPassphrase;
@@ -65,17 +42,6 @@ class Wallet extends React.Component {
       sendTransactionForm : null,
       getUserPasscode : false
     });
-  }
-
-  // delete after done implenting redux action for this
-  getTxns = (props = this.props, startIndex = 0) => {
-    const wallet = props.wallet.wallet;
-    wallet.transactions({ skip : startIndex }).then(txns => {
-      this.setState({ txns : txns.transactions, loadingTxns : false });
-    }).catch(err => {
-      console._error("Error getting txns for wallet : ", wallet.id());
-    });
-    return null;
   }
 
   handleToolsClick = option => {

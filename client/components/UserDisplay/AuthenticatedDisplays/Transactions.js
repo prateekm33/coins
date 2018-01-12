@@ -34,11 +34,14 @@ class Transactions extends React.Component {
     this.setState({ loading : true });
     props.wallet.transactions({})
       .then(txns => {
-        this.setState({ 
-          txns : txns.transactions, 
-          loading : false,
-          allTxns : txns.transactions 
-        });
+        console.warn("--------> also here'", this.state.loading);
+        // setTimeout(() => {
+          this.setState({ 
+            txns : txns.transactions, 
+            loading : false,
+            allTxns : txns.transactions 
+          });
+        // }, 1000);
       })
       .catch(err => {
         console._error("Error getting transactions for wallet : ", props.wallet.id(), err);
@@ -62,9 +65,9 @@ class Transactions extends React.Component {
 
   renderTxns = () => {
     const txns = this.state.txns.map(txn => <Transaction txn={txn} />);
-    return txns.length ? <div className="txns-list">{txns}</div> : (
-      this.state.loading ? <Spinner label="Loading transactions"/> : <div>No transactions to show</div>
-    );
+    return !this.state.loading ? 
+      <div className="txns-list">{txns.length ? txns : "No transactions to show"}</div> :
+      <Spinner label="Loading transactions"/>
   }
 
   renderTabs = () => {
@@ -91,6 +94,7 @@ class Transactions extends React.Component {
             <li key={wallet.id()} onClick={() => {
               this.props.dispatch(setActiveWallet(wallet));
               // this.setState({ loading : true });
+              console.warn("--------> here'");
             }}>
               {wallet.label() || wallet.id()}
             </li>

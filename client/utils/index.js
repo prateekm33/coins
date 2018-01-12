@@ -7,15 +7,6 @@ export const clearUserSession = () => {
   sessionStorage.removeItem('uAT');
 }
 
-// export const eventTypes = {
-//   CLOSE_DROPDOWNS : 'CLOSE_DROPDOWNS'
-// }
-// export const events = {
-//   closeDropdowns : (
-//     // new CustomEvent(eventTypes.CLOSE_DROPDOWNS, { detail : })
-//   )
-// }
-
 // fn should be called using `call` or `apply` to bind it to the component contenxt
 export const getTxns = (props, skip = 0) => {
   props = props || this.props;

@@ -31,10 +31,14 @@
 }
 
 #wallet-send-display {
+  display : flex;
+  justify-content : center;
+
   form {
     display : flex;
     flex-flow : column nowrap;
     max-width : 400px;
+    flex-grow : 1;
 
     #amount-input-container {
       display : flex;

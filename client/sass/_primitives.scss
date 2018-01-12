@@ -1,20 +1,23 @@
 a {
   text-decoration : none; 
 }
-
-.green {
-  color : green;
-}
-
-.yellow {
-  color : yellow;
-}
-
-.back {
+h2 {
+  font-weight : bold;
+  font-size : 20px;
   margin-bottom : 20px;
-  &:hover {
-    cursor : pointer;
-  }
+}
+
+button {
+  border : 1px solid;
+  padding : 5px;
+  min-width : 75px;
+  border-radius : 10px;
+
+  &:hover { cursor : pointer; }
+}
+
+input[type=submit] {
+  border : 2px solid;
 }
 
 input {
@@ -29,14 +32,19 @@ input {
   }
 }
 
-input[type=submit] {
-  border : 2px solid;
+.green {
+  color : green;
 }
 
-h2 {
-  font-weight : bold;
-  font-size : 20px;
+.yellow {
+  color : yellow;
+}
+
+.back {
   margin-bottom : 20px;
+  &:hover {
+    cursor : pointer;
+  }
 }
 
 .backBtn {

@@ -14,7 +14,7 @@ export default class Dropdown extends React.Component {
   componentDidMount = () => {
     document.addEventListener('click', this.handleDocClick);
   }
-  componentWillUnMount = () => {
+  componentWillUnmount = () => {
     document.removeEventListener('click', this.handleDocClick);
   }
 

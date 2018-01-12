@@ -95,7 +95,7 @@ html, body, #app, #top-container {
   @include mainPadding();
   padding-left : 15px;
   padding-right : 15px;
-  width : 100%;
+  flex-grow : 1;
 }
 
 @import "welcomePage";

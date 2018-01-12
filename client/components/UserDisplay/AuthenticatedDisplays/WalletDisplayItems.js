@@ -22,25 +22,25 @@ export const WalletSend = self => {
   let formEl;
   return (
     <div id="wallet-send-display">
-      <form onSubmit={(evt) => handleSend(formEl, evt)} ref={el => formEl = el}>
-        <input placeholder="Deposit address" name="address" required/>
-        <div id="amount-input-container">
-          <label htmlFor="amount-input">BTC</label>
-          <input placeholder="Amount" id="amount-input" name="amount" required/>
-        </div>
-        <textarea placeholder="Enter a message for this transaction" name="message" rows={10} cols={50} />
-        <input type="submit" value="Submit" />
-      </form>
-
       {
-        getUserPasscode &&
-          <Modal close={() => self.setState({ getUserPasscode : false })}>
-            <form onSubmit={evt => self.handleSendTransaction(evt)}>
-              <input placeholder="OTP" required name="otp" />
-              <input placeholder={"Enter wallet password"} name="walletPassphrase" id="walletPassphrase-input" required/>
-              <input type="submit" value="Send" />
-            </form>
-          </Modal>
+        !getUserPasscode ?
+          <form onSubmit={(evt) => handleSend(formEl, evt)} ref={el => formEl = el}>
+          <input placeholder="Deposit address" name="address" required/>
+          <div id="amount-input-container">
+            <label htmlFor="amount-input">BTC</label>
+            <input placeholder="Amount" id="amount-input" name="amount" required/>
+          </div>
+          <textarea placeholder="Enter a message for this transaction" name="message" rows={10} cols={50} />
+          <input type="submit" value="Submit" />
+        </form> 
+        :
+        <Modal closeLabel="Back" close={() => self.setState({ getUserPasscode : false })}>
+          <form onSubmit={evt => self.handleSendTransaction(evt)}>
+            <input placeholder="OTP" required name="otp" />
+            <input placeholder={"Enter wallet password"} name="walletPassphrase" id="walletPassphrase-input" required/>
+            <input type="submit" value="Send" />
+          </form>
+        </Modal>
       }
     </div>
   );

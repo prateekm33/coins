@@ -73,51 +73,63 @@ a {
   text-decoration: none;
 }
 
-/* line 5, ../sass/_primitives.scss */
-.green {
-  color: green;
-}
-
-/* line 9, ../sass/_primitives.scss */
-.yellow {
-  color: yellow;
-}
-
-/* line 13, ../sass/_primitives.scss */
-.back {
-  margin-bottom: 20px;
-}
-/* line 15, ../sass/_primitives.scss */
-.back:hover {
-  cursor: pointer;
-}
-
-/* line 20, ../sass/_primitives.scss */
-input {
-  margin-bottom: 30px;
-  border: none;
-  border-bottom: 1px solid black;
-  padding: 10px;
-}
-/* line 26, ../sass/_primitives.scss */
-input:focus {
-  border-bottom: 3px solid black;
-  outline: none;
-}
-
-/* line 32, ../sass/_primitives.scss */
-input[type=submit] {
-  border: 2px solid;
-}
-
-/* line 36, ../sass/_primitives.scss */
+/* line 4, ../sass/_primitives.scss */
 h2 {
   font-weight: bold;
   font-size: 20px;
   margin-bottom: 20px;
 }
 
-/* line 42, ../sass/_primitives.scss */
+/* line 10, ../sass/_primitives.scss */
+button {
+  border: 1px solid;
+  padding: 5px;
+  min-width: 75px;
+  border-radius: 10px;
+}
+/* line 16, ../sass/_primitives.scss */
+button:hover {
+  cursor: pointer;
+}
+
+/* line 19, ../sass/_primitives.scss */
+input[type=submit] {
+  border: 2px solid;
+}
+
+/* line 23, ../sass/_primitives.scss */
+input {
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid black;
+  padding: 10px;
+}
+/* line 29, ../sass/_primitives.scss */
+input:focus {
+  border-bottom: 3px solid black;
+  outline: none;
+}
+
+/* line 35, ../sass/_primitives.scss */
+.green {
+  color: green;
+}
+
+/* line 39, ../sass/_primitives.scss */
+.yellow {
+  color: yellow;
+}
+
+/* line 43, ../sass/_primitives.scss */
+.back {
+  margin-bottom: 20px;
+}
+/* line 45, ../sass/_primitives.scss */
+.back:hover {
+  cursor: pointer;
+}
+
+/* line 50, ../sass/_primitives.scss */
 .backBtn {
   width: 10px;
   height: 10px;
@@ -126,12 +138,12 @@ h2 {
   transform: rotate(45deg);
   margin-bottom: 10px;
 }
-/* line 50, ../sass/_primitives.scss */
+/* line 58, ../sass/_primitives.scss */
 .backBtn:hover {
   cursor: pointer;
 }
 
-/* line 53, ../sass/_primitives.scss */
+/* line 61, ../sass/_primitives.scss */
 .spinner {
   left: 45%;
   position: absolute;
@@ -140,25 +152,25 @@ h2 {
   flex-flow: column nowrap;
   align-items: center;
 }
-/* line 61, ../sass/_primitives.scss */
+/* line 69, ../sass/_primitives.scss */
 .spinner#content-busy {
   position: absolute;
   top: 25%;
   left: 50%;
 }
 
-/* line 68, ../sass/_primitives.scss */
+/* line 76, ../sass/_primitives.scss */
 .dropdown {
   position: relative;
   min-width: 150px;
 }
-/* line 72, ../sass/_primitives.scss */
+/* line 80, ../sass/_primitives.scss */
 .dropdown .dropdown-label {
   cursor: pointer;
   display: flex;
   flex-flow: row nowrap;
 }
-/* line 76, ../sass/_primitives.scss */
+/* line 84, ../sass/_primitives.scss */
 .dropdown .dropdown-label .down-arrow {
   margin-left: 10px;
   height: 5px;
@@ -168,12 +180,12 @@ h2 {
   transform: rotate(-45deg);
   transition: transform 0.5s;
 }
-/* line 85, ../sass/_primitives.scss */
+/* line 93, ../sass/_primitives.scss */
 .dropdown .dropdown-label .down-arrow.up {
   transform: rotate(135deg);
 }
 
-/* line 92, ../sass/_primitives.scss */
+/* line 100, ../sass/_primitives.scss */
 .dropdown-options {
   position: absolute;
   background: white;
@@ -183,11 +195,11 @@ h2 {
   max-height: 400px;
   overflow: scroll;
 }
-/* line 100, ../sass/_primitives.scss */
+/* line 108, ../sass/_primitives.scss */
 .dropdown-options li {
   cursor: pointer;
 }
-/* line 103, ../sass/_primitives.scss */
+/* line 111, ../sass/_primitives.scss */
 .dropdown-options li:not(:last-child) {
   margin-bottom: 25px;
 }
@@ -331,7 +343,7 @@ html, body, #app, #top-container {
   padding: 15px;
   padding-left: 15px;
   padding-right: 15px;
-  width: 100%;
+  flex-grow: 1;
 }
 
 /* line 1, ../sass/_welcomePage.scss */
@@ -474,29 +486,35 @@ html, body, #app, #top-container {
   margin-top: 30px;
 }
 
-/* line 34, ../sass/_walletPage.scss */
+/* line 33, ../sass/_walletPage.scss */
+#wallet-send-display {
+  display: flex;
+  justify-content: center;
+}
+/* line 37, ../sass/_walletPage.scss */
 #wallet-send-display form {
   display: flex;
   flex-flow: column nowrap;
   max-width: 400px;
+  flex-grow: 1;
 }
-/* line 39, ../sass/_walletPage.scss */
+/* line 43, ../sass/_walletPage.scss */
 #wallet-send-display form #amount-input-container {
   display: flex;
   flex-flow: row nowrap;
   position: relative;
 }
-/* line 44, ../sass/_walletPage.scss */
+/* line 48, ../sass/_walletPage.scss */
 #wallet-send-display form #amount-input-container #amount-input {
   width: 100%;
 }
-/* line 45, ../sass/_walletPage.scss */
+/* line 49, ../sass/_walletPage.scss */
 #wallet-send-display form #amount-input-container label {
   position: absolute;
   right: 0;
   top: 10px;
 }
-/* line 52, ../sass/_walletPage.scss */
+/* line 56, ../sass/_walletPage.scss */
 #wallet-send-display form input:not([type=submit]) {
   min-width: 300px;
 }
@@ -574,30 +592,32 @@ html, body, #app, #top-container {
 /* line 54, ../sass/_transactions.scss */
 #tab-options-container {
   margin: 20px 0;
+  display: flex;
+  flex-flow: row nowrap;
 }
-/* line 56, ../sass/_transactions.scss */
+/* line 58, ../sass/_transactions.scss */
 #tab-options-container button {
   border: none;
   border-bottom: 2px solid;
   padding: 5px 10px;
 }
-/* line 60, ../sass/_transactions.scss */
+/* line 62, ../sass/_transactions.scss */
 #tab-options-container button.active {
   border-bottom: 0;
   border-top: 2px solid;
   border-left: 2px solid;
   border-right: 2px solid;
 }
-/* line 67, ../sass/_transactions.scss */
+/* line 69, ../sass/_transactions.scss */
 #tab-options-container button:focus {
   outline: none;
 }
-/* line 68, ../sass/_transactions.scss */
+/* line 70, ../sass/_transactions.scss */
 #tab-options-container button:hover {
   cursor: pointer;
 }
 
-/* line 72, ../sass/_transactions.scss */
+/* line 74, ../sass/_transactions.scss */
 .txns-list {
   margin-top: 30px;
 }

@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "devserver": "PORT=3000 node_modules/.bin/webpack-dev-server --config webpack/devServer.js -w",
-    "dev": "NODE_ENV=dev webpack --config webpack/dev.js -w",
+    "dev": "NODE_ENV=dev node_modules/.bin/webpack --config webpack/dev.js -w",
     "dev:help": "webpack-dev-server --help"
   },
   "keywords": [],

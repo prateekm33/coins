@@ -60,11 +60,9 @@ class Transactions extends React.Component {
     } else if (idx === 1) {
       // display only sent txns
       return allTxns.filter(isOutgoingTxn);
-      // this.setState({ txns : this.state.allTxns.filter(txn => isOutgoingTxn(txn)) });
     } else if (idx === 2) {
       // display only received txns
       return allTxns.filter(txn => !isOutgoingTxn(txn));
-      // this.setState({ txns : this.state.allTxns.filter(txn => !isOutgoingTxn(txn)) });
     }
   }
 
@@ -83,7 +81,11 @@ class Transactions extends React.Component {
             const classname = classnames('tab-option', {
               active : this.state.activeIdx === idx
             });
-            return <button key={`btn-tab-${opt}`} onClick={() => this.handleOptionClick(idx) } className={classname}>{opt}</button>
+            return <button key={`btn-tab-${opt}`} 
+                           onClick={() => this.handleOptionClick(idx) } 
+                           className={classname}>
+                      {opt}
+                    </button>
           })
         }
       </div>
@@ -112,15 +114,14 @@ class Transactions extends React.Component {
       <div id="txns-page" style={{ position : 'relative' /* for the spinner */}}>
         { this.props.showDropdown !== false && <h2 id="txns-page-header">Transactions</h2> }
         {/*
-          The transactions component is also used in the wallet page. 
-          We use the props.showDropdown boolean to determine whether
-          we show the wallet labels or not.
+          The transactions component is also used in the wallet page. We use the 
+          props.showDropdown boolean to determine whether we show the wallet labels or not.
 
-          Show the spinner if we are loading or if there is no selected wallet, because we are probably
-          still getting that data. 
+          Show the spinner if we are loading or if there is no selected wallet, because we 
+          are probably still getting that data. 
 
-          If we are loading, then make sure to unmount any previously loaded txns by adding a boolean
-          gate to the `this.renderTxns` call.
+          If we are loading, then make sure to unmount any previously loaded txns by adding a 
+          boolean gate to the `this.renderTxns` call.
         */}
         { !this.state.loading && this.props.wallet ? 
             this.props.showDropdown !== false && this.renderDropdown() : 
@@ -159,12 +160,8 @@ export class Transaction extends React.Component {
     this.setState({ isOutgoing : isOutgoingTxn(this.props.txn) });
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps = nextProps => {
     this.setState({ isOutgoing : isOutgoingTxn(nextProps.txn) });
-  }
-
-  openBlockExplorer = (type, query) => {
-    window.open(`${config.urls.explorers['bitcoin']}/${type}/${query}`);
   }
 
   renderStrangersAddress = () => {

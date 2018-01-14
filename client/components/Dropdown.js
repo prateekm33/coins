@@ -41,8 +41,8 @@ export default class Dropdown extends React.Component {
 
   toggleList = evt => {
     // if (evt.target.tagName.toUpperCase() !== 'LI') return;
+    this.downArrow.classList.toggle('up', !this.state.displayList);
     this.setState({ displayList : !this.state.displayList });
-    this.downArrow.classList.toggle('up');
   }
 
   renderLabel = () => {

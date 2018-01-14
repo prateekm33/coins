@@ -49,7 +49,7 @@ const UserDisplay = props => {
           return (
             <div>
               <div>Sorry! Could not find the page you were looking for.</div>
-              // <Link to={config.routes.unauth.welcome} />
+              <Link to={config.routes.unauth.welcome}>Click here to get redirected back home.</Link>
             </div>
           );
         }} />
@@ -83,7 +83,7 @@ function renderRoutes(parentProps, map) {
           // for state persistence...
           if (isAuthRoute && !parentProps.user) { 
             return <Redirect to={{ pathname : config.routes.unauth.welcome }} />
-          } else if (!isAuthRoute && parentProps.usser) {
+          } else if (!isAuthRoute && parentProps.user) {
             return <Redirect to={{ pathname : config.routes.auth.wallets }} />
           }
           

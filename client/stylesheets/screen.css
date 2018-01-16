@@ -110,12 +110,12 @@ input[type=submit] {
 input {
   margin-bottom: 30px;
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #b0d1e6;
   padding: 10px;
 }
 /* line 31, ../sass/_primitives.scss */
 input:focus {
-  border-bottom: 3px solid black;
+  border-bottom: 3px solid #4a89b1;
   outline: none;
 }
 
@@ -553,34 +553,52 @@ html, body, #app, #top-container {
   flex-grow: 1;
 }
 /* line 54, ../sass/_walletPage.scss */
-#wallet-send-display form #amount-input-container {
-  display: flex;
-  flex-flow: row nowrap;
-  position: relative;
-}
-/* line 59, ../sass/_walletPage.scss */
-#wallet-send-display form #amount-input-container #amount-input {
+#wallet-send-display form #address-input-container {
   width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  margin-bottom: 30px;
 }
 /* line 60, ../sass/_walletPage.scss */
+#wallet-send-display form #address-input-container #address-input {
+  padding: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 5px;
+}
+/* line 68, ../sass/_walletPage.scss */
+#wallet-send-display form #amount-input-container {
+  display: flex;
+  flex-flow: column nowrap;
+  position: relative;
+  margin-bottom: 30px;
+}
+/* line 74, ../sass/_walletPage.scss */
+#wallet-send-display form #amount-input-container #amount-input {
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  margin-bottom: 5px;
+}
+/* line 80, ../sass/_walletPage.scss */
 #wallet-send-display form #amount-input-container label {
   position: absolute;
   right: 0;
   top: 10px;
 }
-/* line 67, ../sass/_walletPage.scss */
+/* line 87, ../sass/_walletPage.scss */
 #wallet-send-display form input:not([type=submit]) {
   min-width: 300px;
 }
 
-/* line 74, ../sass/_walletPage.scss */
+/* line 94, ../sass/_walletPage.scss */
 #wallet-receive-display .dropdown-label {
   max-width: 350px;
   border-bottom: 2px solid;
   padding-bottom: 15px;
 }
 
-/* line 81, ../sass/_walletPage.scss */
+/* line 101, ../sass/_walletPage.scss */
 #wallets-list-container {
   margin-top: 30px;
 }

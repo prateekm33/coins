@@ -1,12 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import Transactions from './Transactions';
 import { 
   WalletTransactions, 
-  WalletSend, 
   WalletReceive, 
   WalletSettings 
 } from './WalletDisplayItems';
+import WalletSend from './WalletSend';
 import { sendTransaction, getTxns } from '../../../redux/actions/walletActions';
 
 class Wallet extends React.Component {
@@ -18,7 +17,8 @@ class Wallet extends React.Component {
     this.toolsList = {
       Transactions : () => 
         <Transactions wallet={this.props.wallet} loading={this.state.loadingTxns} showDropdown={false}/>,
-      Send : () => WalletSend(this),
+      Send : () => <WalletSend wallet={this.props.wallet} />,
+      // () => WalletSend(this),
       Receive : () => <WalletReceive addresses={this.state.addresses}/>,
       Settings : () => WalletSettings()
     };
@@ -27,24 +27,10 @@ class Wallet extends React.Component {
       txns : [],
       displayRenderFn : this.toolsList.Transactions,
       addresses : null,
-      getUserPasscode : false,
       denomination : 'btc',
       loadingTxns : true,
       clicked : 'Transactions'
     };
-  }
-
-  handleSendTransaction = evt => {
-    evt.preventDefault();
-    this.state.sendTransactionForm.walletPassphrase = evt.target.walletPassphrase;
-    this.state.sendTransactionForm.otp = evt.target.otp;
-    this.props.dispatch(
-      sendTransaction(this.state.sendTransactionForm, this.props.wallet, 'BTC')
-    );
-    this.setState({
-      sendTransactionForm : null,
-      getUserPasscode : false
-    });
   }
 
   handleToolsClick = option => {
@@ -93,4 +79,4 @@ class Wallet extends React.Component {
   }
 }
 
-export default connect()(Wallet);
+export default Wallet;

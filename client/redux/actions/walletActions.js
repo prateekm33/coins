@@ -10,7 +10,7 @@ export const sendTransaction = (form, wallet, denomination = 'btc') => {
     walletPassphrase : walletPassphrase.value
   };
   return (dispatch, getState) => {
-    bitgo.client.unlock({ otp : otp.value })
+    return bitgo.client.unlock({ otp : otp.value })
       .then(session => {
         return bitgo.wallets().get({
           id : wallet.id()
@@ -22,9 +22,25 @@ export const sendTransaction = (form, wallet, denomination = 'btc') => {
       })
       .then(res => {
         console.warn("sent txn : ", res);
+        return {  error : false };
       })
       .catch(err => {
         console._error("error txn : ", err);
+        window.err = err;
+        let message, type;
+        const errMessage = err.message.toLowerCase();
+        if (errMessage.includes('invalid bitcoin address')) {
+          message = 'The receiving address is an invalid Bitcoin address';
+          type = 'address';
+        } else if (errMessage.includes('insufficient funds')) {
+          message = 'You do not have sufficient funds for this transaction';
+          type = 'amount';
+        } else {
+          message = 'Oops! Something went wrong. The issue may be with connectivity.';
+          type = 'network';
+        }
+        return { error : true, message, type };
+        // return { error : true, }
       });
   }
 }

@@ -3,7 +3,6 @@ import QRCode from 'qrcode';
 import { Transaction } from './Transactions';
 import Spinner from '../../Spinner';
 import Dropdown from '../../Dropdown';
-import Modal from '../../Modal';
 
 export const WalletTransactions = (txns, loadingTxns) => {
   return (
@@ -11,49 +10,6 @@ export const WalletTransactions = (txns, loadingTxns) => {
       { 
         loadingTxns ? <Spinner label="Loading transactions"/> :
           txns.map(txn => <Transaction key={txn.id} txn={txn}/>)
-      }
-    </div>
-  );
-}
-
-// This component's argument is the component context within which it is called
-export const WalletSend = self => {
-  let formEl;
-  const wallet = self.props.wallet,
-        getUserPasscode = self.state.getUserPasscode;
-
-  const handleSend = (formEl, evt) => {
-    evt.preventDefault();
-    // validate inputs --- TODO
-    if ([formEl.address, formEl.amount]
-        .filter(input => !input.value).length) return false;
-
-    self.setState({ 
-      getUserPasscode : true,
-      sendTransactionForm : formEl
-    });
-  }
-  return (
-    <div id="wallet-send-display">
-      {
-        !getUserPasscode ?
-          <form onSubmit={(evt) => handleSend(formEl, evt)} ref={el => formEl = el}>
-          <input placeholder="Deposit address" name="address" required/>
-          <div id="amount-input-container">
-            <label htmlFor="amount-input">BTC</label>
-            <input placeholder="Amount" id="amount-input" name="amount" required/>
-          </div>
-          <textarea placeholder="Enter a message for this transaction" name="message" rows={10} cols={50} />
-          <input type="submit" value="Submit" />
-        </form> 
-        :
-        <Modal closeLabel="Back" close={() => self.setState({ getUserPasscode : false })}>
-          <form onSubmit={evt => self.handleSendTransaction(evt)}>
-            <input placeholder="OTP" required name="otp" />
-            <input placeholder={"Enter wallet password"} name="walletPassphrase" id="walletPassphrase-input" required/>
-            <input type="submit" value="Send" />
-          </form>
-        </Modal>
       }
     </div>
   );

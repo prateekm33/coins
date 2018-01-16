@@ -51,6 +51,8 @@ export class Wallet {
 }
 
 function balance(wallets, opts = { decimals : 8, denomination : 'btc' }) {
+  opts.decimals = opts.decimals || 8;
+  opts.denomination = opts.denomination || 'btc';
   let divisor;
   switch (opts.denomination) {
     case 'sat' : 

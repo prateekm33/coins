@@ -25,11 +25,11 @@ input[type=submit] {
 input {
   margin-bottom : 30px;
   border : none;
-  border-bottom : 1px solid black;
+  border-bottom : 1px solid $secondary-color;
   padding : 10px;
 
   &:focus {
-    border-bottom : 3px solid black;
+    border-bottom : 3px solid $primary-color;
     outline : none;
   }
 }

@@ -35,6 +35,9 @@ export const sendTransaction = (form, wallet, denomination = 'btc') => {
         } else if (errMessage.includes('insufficient funds')) {
           message = 'You do not have sufficient funds for this transaction';
           type = 'amount';
+        } else if (errMessage.includes('unable to decrypt user keychain')) {
+          message = 'Incorrect wallet password';
+          type = 'password';
         } else {
           message = 'Oops! Something went wrong. The issue may be with connectivity.';
           type = 'network';

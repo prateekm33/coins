@@ -65,6 +65,11 @@ class WalletSend extends React.Component {
         case 'amount' : 
           state.amountError = { error : true, message : res.message };
           break;
+        case 'password' :
+          // stay on passcode form
+          state.getUserPasscode = true;
+          state.passphraseError = { error : true, message : res.message };
+          break;
         default : 
           state.sendError = { error : true, message : res.message };
           break;
@@ -86,7 +91,7 @@ class WalletSend extends React.Component {
     return (
       <form onSubmit={this.submitFormOne} ref={el => this.formOne = el}>
         { this.state.sendError && 
-            <div>
+            <div id="send-error">
               <div>{this.state.sendError.message}</div>
               <div onClick={() => this.setState({ sendError : null })}/>
             </div>
@@ -95,13 +100,7 @@ class WalletSend extends React.Component {
         <div id="address-input-container">
           <input onChange={() => this.removeErrorState('address')} 
                  placeholder="Enter deposit address" name="address" id="address-input" required />
-          <div style={{ 
-            fontSize : '10px', 
-            color : 'red',
-            visibility : this.state.addressError ? 'visible' : 'hidden'
-          }}>
-            {(this.state.addressError || {}).message}
-          </div>
+          <InputError error={this.state.addressError}/>
         </div>
 
         <div id="amount-input-container">
@@ -112,14 +111,7 @@ class WalletSend extends React.Component {
                    id="amount-input" name="amount" required/>
           </div>
 
-          <div style={{ 
-            fontSize : '10px', 
-            color : 'red', 
-            visibility : this.state.amountError ? 'visible' : 'hidden'
-          }}>
-            {(this.state.amountError || {}).message}
-          </div> 
-
+          <InputError error={this.state.amountError}/>
         </div>
 
         <textarea placeholder="Enter a message for this transaction" name="message" 
@@ -134,8 +126,11 @@ class WalletSend extends React.Component {
       <Modal closeLabel="Back" close={() => this.setState({ getUserPasscode : false })}>
         <form onSubmit={this.handleSendTransaction}>
           <input placeholder="OTP" required name="otp" />
-          <input type="password" placeholder={"Enter wallet password"} name="walletPassphrase" id="walletPassphrase-input" required/>
-          <input type="submit" value={
+          <div style={{ marginBottom : '30px' }}>
+            <input type="password" placeholder={"Enter wallet password"} name="walletPassphrase" id="walletPassphrase-input" required/>
+            <InputError error={this.state.passphraseError}/>
+          </div>
+          <input style={{ marginBottom : '5px' }} type="submit" value={
             this.state.sendingTransaction ? 'Sending transaction...' : 'Send'
           }/>
         </form>
@@ -157,4 +152,18 @@ class WalletSend extends React.Component {
 }
 
 const mapStateToProps = state => ({});
+
+
+const InputError = props => {
+  return (
+    <div style={{ 
+      fontSize : '10px', 
+      color : 'red', 
+      visibility : props.error ? 'visible' : 'hidden'
+    }}>
+      {(props.error || '').message}
+    </div> 
+  );
+}
+
 export default connect(mapStateToProps)(WalletSend);

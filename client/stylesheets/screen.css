@@ -103,27 +103,31 @@ button {
   padding: 5px;
   min-width: 75px;
   border-radius: 10px;
-  cursor: pointer;
 }
-/* line 29, ../sass/_primitives.scss */
+/* line 28, ../sass/_primitives.scss */
 button:hover {
   background: #b0d1e6;
 }
-/* line 30, ../sass/_primitives.scss */
+/* line 29, ../sass/_primitives.scss */
 button.active {
   cursor: default;
 }
-/* line 31, ../sass/_primitives.scss */
+/* line 30, ../sass/_primitives.scss */
 button:focus {
   outline: none;
 }
 
-/* line 34, ../sass/_primitives.scss */
-input[type=submit] {
-  border: 2px solid;
+/* line 33, ../sass/_primitives.scss */
+input[type=submit], button {
+  cursor: pointer;
+  border: 2px solid #205577;
+}
+/* line 37, ../sass/_primitives.scss */
+input[type=submit]:hover, button:hover {
+  background: #b0d1e6;
 }
 
-/* line 38, ../sass/_primitives.scss */
+/* line 42, ../sass/_primitives.scss */
 input {
   margin-bottom: 30px;
   border: none;
@@ -131,37 +135,37 @@ input {
   padding: 10px;
   font-size: 1em;
 }
-/* line 45, ../sass/_primitives.scss */
+/* line 49, ../sass/_primitives.scss */
 input:focus {
   border-bottom: 3px solid #4a89b1;
   outline: none;
 }
 
-/* line 53, ../sass/_primitives.scss */
+/* line 57, ../sass/_primitives.scss */
 .hidden {
   display: none;
 }
 
-/* line 57, ../sass/_primitives.scss */
+/* line 61, ../sass/_primitives.scss */
 .green {
   color: green;
 }
 
-/* line 61, ../sass/_primitives.scss */
+/* line 65, ../sass/_primitives.scss */
 .yellow {
   color: yellow;
 }
 
-/* line 65, ../sass/_primitives.scss */
+/* line 69, ../sass/_primitives.scss */
 .back {
   margin-bottom: 20px;
 }
-/* line 67, ../sass/_primitives.scss */
+/* line 71, ../sass/_primitives.scss */
 .back:hover {
   cursor: pointer;
 }
 
-/* line 72, ../sass/_primitives.scss */
+/* line 76, ../sass/_primitives.scss */
 .backBtn {
   width: 10px;
   height: 10px;
@@ -170,12 +174,12 @@ input:focus {
   transform: rotate(45deg);
   margin-bottom: 10px;
 }
-/* line 80, ../sass/_primitives.scss */
+/* line 84, ../sass/_primitives.scss */
 .backBtn:hover {
   cursor: pointer;
 }
 
-/* line 83, ../sass/_primitives.scss */
+/* line 87, ../sass/_primitives.scss */
 .spinner {
   left: 45%;
   position: absolute;
@@ -184,18 +188,18 @@ input:focus {
   flex-flow: column nowrap;
   align-items: center;
 }
-/* line 91, ../sass/_primitives.scss */
+/* line 95, ../sass/_primitives.scss */
 .spinner#content-busy {
   position: absolute;
   top: 25%;
   left: 50%;
 }
 
-/* line 98, ../sass/_primitives.scss */
+/* line 102, ../sass/_primitives.scss */
 .dropdown {
   position: relative;
 }
-/* line 106, ../sass/_primitives.scss */
+/* line 110, ../sass/_primitives.scss */
 .dropdown .dropdown-label {
   cursor: pointer;
   display: flex;
@@ -203,14 +207,14 @@ input:focus {
   justify-content: space-between;
   font-weight: bold;
 }
-/* line 114, ../sass/_primitives.scss */
+/* line 118, ../sass/_primitives.scss */
 .dropdown .dropdown-label:not(.outlier) {
   padding: 10px;
   border: 2px solid #4a89b1;
   border-radius: 10px;
   background: rgba(74, 137, 177, 0.16078);
 }
-/* line 121, ../sass/_primitives.scss */
+/* line 125, ../sass/_primitives.scss */
 .dropdown .dropdown-label .down-arrow {
   margin-left: 10px;
   height: 7px;
@@ -220,12 +224,12 @@ input:focus {
   transform: rotate(-45deg);
   transition: transform 0.5s;
 }
-/* line 130, ../sass/_primitives.scss */
+/* line 134, ../sass/_primitives.scss */
 .dropdown .dropdown-label .down-arrow.up {
   transform: rotate(135deg);
 }
 
-/* line 137, ../sass/_primitives.scss */
+/* line 141, ../sass/_primitives.scss */
 .dropdown-options {
   position: absolute;
   background: white;
@@ -237,25 +241,25 @@ input:focus {
   margin-top: 10px;
   min-width: 100%;
 }
-/* line 148, ../sass/_primitives.scss */
+/* line 152, ../sass/_primitives.scss */
 .dropdown-options li {
   cursor: pointer;
 }
-/* line 150, ../sass/_primitives.scss */
+/* line 154, ../sass/_primitives.scss */
 .dropdown-options li:hover {
   color: #4a89b1;
 }
-/* line 154, ../sass/_primitives.scss */
+/* line 158, ../sass/_primitives.scss */
 .dropdown-options li:not(:last-child) {
   margin-bottom: 25px;
 }
 
-/* line 159, ../sass/_primitives.scss */
+/* line 163, ../sass/_primitives.scss */
 .address {
   color: #205577;
   font-weight: bold;
 }
-/* line 162, ../sass/_primitives.scss */
+/* line 166, ../sass/_primitives.scss */
 .address:hover {
   border-bottom: 2px solid;
 }

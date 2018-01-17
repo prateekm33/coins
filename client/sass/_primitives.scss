@@ -24,15 +24,19 @@ button {
   padding : 5px;
   min-width : 75px;
   border-radius : 10px;
-  cursor : pointer;
 
   &:hover { background: $secondary-color; }
   &.active { cursor : default; }
   &:focus { outline : none; }
 }
 
-input[type=submit] {
-  border : 2px solid;
+input[type=submit], button {
+  cursor : pointer;
+  border : 2px solid $dark-primary-color;
+
+  &:hover {
+    background : $secondary-color;
+  }
 }
 
 input {

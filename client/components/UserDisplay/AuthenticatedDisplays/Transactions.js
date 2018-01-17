@@ -5,7 +5,7 @@ import config from '../../../../config';
 import Address from '../../Address';
 import Spinner from '../../Spinner';
 import Dropdown from '../../Dropdown';
-
+import { getExplorerURL } from '../../../utils';
 import { setActiveWallet } from '../../../redux/actions/userActions';
 
 class Transactions extends React.Component {
@@ -197,11 +197,11 @@ export class Transaction extends React.Component {
         }</div>
         <div className="txn-blockhash">
           <div className="txn-label">Block</div>
-          <a href={`${config.urls.explorers['bitcoin']}/block/${txn.blockhash}`} target='_blank'>{txn.blockhash}</a>
+          <a href={`${getExplorerURL()}/block/${txn.blockhash}`} target='_blank'>{txn.blockhash}</a>
         </div>
         <div className="txn-id">
           <div className="txn-label">Hash</div>
-          <a href={`${config.urls.explorers['bitcoin']}/tx/${txn.id}`} target='_blank'>{txn.id}</a>
+          <a href={`${getExplorerURL()}/tx/${txn.id}`} target='_blank'>{txn.id}</a>
         </div>
         <div style={{ display : 'flex', justifyContent : 'space-between'}}>
           <div className="txn-confirmations">

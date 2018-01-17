@@ -1,3 +1,5 @@
+import config from '../../config';
+
 export const saveUserSession = res => {
   res.accessToken = res.accessToken || res.access_token;
   sessionStorage.setItem('uAT', res.accessToken);
@@ -22,4 +24,16 @@ export const getTxns = (props, skip = 0) => {
     console._error("Error getting txns for wallet : ", wallet.id());
     this.setState({ loading : false });
   });
+}
+
+export const getExplorerURL = () => {
+  switch (process.env.NODE_ENV) {
+    case 'prod' :
+    case 'production' :
+      return config.urls.explorers.bitcoin.prod;
+    case 'dev' :
+    case 'development' :
+    default :
+      return config.urls.explorers.bitcoin.dev;
+  }
 }

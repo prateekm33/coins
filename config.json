@@ -3,7 +3,10 @@
 
   "urls" : {
     "explorers" : {
-      "bitcoin" : "https://testnet.smartbit.com.au"
+      "bitcoin" : {
+        "prod" : "https://smartbit.com.au",
+        "dev" : "https://testnet.smartbit.com.au"
+      }
     },
     "bitgo" : {
       "signup" : {

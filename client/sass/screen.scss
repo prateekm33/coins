@@ -8,25 +8,20 @@
 @import "primitives";
 @import "animations";
 
-html, body, #app, #top-container {
-  height : 100%;
-  min-width : 400px;
-}
-
-.hidden {
-  display : none;
-}
-
 #header {
   @include mainPadding();
   background : $tertiary-color; // rgb(29, 27, 27)
   color : white;
   display : flex;
   justify-content : space-between;
-  height : 40px;
+  height : 100px;
   align-items : center;
-  font-size : 26px;
+  font-size : 1.2em; //26px;
   font-weight : bold;
+
+  @include setMediaFor(medium-screens) {
+    height : 40px;
+  }
 
   #profile-dropdown {
     .dropdown-label { justify-content : flex-end; }
@@ -43,7 +38,7 @@ html, body, #app, #top-container {
         margin-bottom : 25px;
       }
       li {
-        font-size : 15px;
+        font-size : 0.75em;//15px;
         &:hover {
           cursor : pointer;
         }
@@ -62,7 +57,7 @@ html, body, #app, #top-container {
     border-radius : 10px;
     background : none;
     color : white;
-    font-size : 15px;
+    font-size : 0.75em; //15px;
     font-weight : bold;
   }
 }

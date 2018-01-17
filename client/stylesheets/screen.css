@@ -69,76 +69,99 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 /*BREAKPOINT VARIABLES*/
 /* line 1, ../sass/_primitives.scss */
+html {
+  font-size: 40px;
+}
+@media only screen and (min-width: 481px) and (min-device-width: 401px) {
+  /* line 1, ../sass/_primitives.scss */
+  html {
+    font-size: 20px;
+  }
+}
+
+/* line 8, ../sass/_primitives.scss */
+html, body, #app, #top-container {
+  height: 100%;
+  min-width: 400px;
+}
+
+/* line 13, ../sass/_primitives.scss */
 a {
   text-decoration: none;
 }
 
-/* line 4, ../sass/_primitives.scss */
+/* line 16, ../sass/_primitives.scss */
 h2 {
   font-weight: bold;
-  font-size: 24px;
+  font-size: 1.2em;
   margin-bottom: 20px;
 }
 
-/* line 10, ../sass/_primitives.scss */
+/* line 22, ../sass/_primitives.scss */
 button {
   border: 1px solid;
   padding: 5px;
   min-width: 75px;
   border-radius: 10px;
-}
-/* line 16, ../sass/_primitives.scss */
-button:hover {
   cursor: pointer;
+}
+/* line 29, ../sass/_primitives.scss */
+button:hover {
   background: #b0d1e6;
 }
-/* line 17, ../sass/_primitives.scss */
+/* line 30, ../sass/_primitives.scss */
 button.active {
   cursor: default;
 }
-/* line 18, ../sass/_primitives.scss */
+/* line 31, ../sass/_primitives.scss */
 button:focus {
   outline: none;
 }
 
-/* line 21, ../sass/_primitives.scss */
+/* line 34, ../sass/_primitives.scss */
 input[type=submit] {
   border: 2px solid;
 }
 
-/* line 25, ../sass/_primitives.scss */
+/* line 38, ../sass/_primitives.scss */
 input {
   margin-bottom: 30px;
   border: none;
   border-bottom: 1px solid #b0d1e6;
   padding: 10px;
+  font-size: 1em;
 }
-/* line 31, ../sass/_primitives.scss */
+/* line 45, ../sass/_primitives.scss */
 input:focus {
   border-bottom: 3px solid #4a89b1;
   outline: none;
 }
 
-/* line 37, ../sass/_primitives.scss */
+/* line 53, ../sass/_primitives.scss */
+.hidden {
+  display: none;
+}
+
+/* line 57, ../sass/_primitives.scss */
 .green {
   color: green;
 }
 
-/* line 41, ../sass/_primitives.scss */
+/* line 61, ../sass/_primitives.scss */
 .yellow {
   color: yellow;
 }
 
-/* line 45, ../sass/_primitives.scss */
+/* line 65, ../sass/_primitives.scss */
 .back {
   margin-bottom: 20px;
 }
-/* line 47, ../sass/_primitives.scss */
+/* line 67, ../sass/_primitives.scss */
 .back:hover {
   cursor: pointer;
 }
 
-/* line 52, ../sass/_primitives.scss */
+/* line 72, ../sass/_primitives.scss */
 .backBtn {
   width: 10px;
   height: 10px;
@@ -147,12 +170,12 @@ input:focus {
   transform: rotate(45deg);
   margin-bottom: 10px;
 }
-/* line 60, ../sass/_primitives.scss */
+/* line 80, ../sass/_primitives.scss */
 .backBtn:hover {
   cursor: pointer;
 }
 
-/* line 63, ../sass/_primitives.scss */
+/* line 83, ../sass/_primitives.scss */
 .spinner {
   left: 45%;
   position: absolute;
@@ -161,35 +184,33 @@ input:focus {
   flex-flow: column nowrap;
   align-items: center;
 }
-/* line 71, ../sass/_primitives.scss */
+/* line 91, ../sass/_primitives.scss */
 .spinner#content-busy {
   position: absolute;
   top: 25%;
   left: 50%;
 }
 
-/* line 78, ../sass/_primitives.scss */
+/* line 98, ../sass/_primitives.scss */
 .dropdown {
   position: relative;
-  min-width: 150px;
 }
-/* line 82, ../sass/_primitives.scss */
+/* line 106, ../sass/_primitives.scss */
 .dropdown .dropdown-label {
   cursor: pointer;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  max-width: 200px;
   font-weight: bold;
 }
-/* line 90, ../sass/_primitives.scss */
+/* line 114, ../sass/_primitives.scss */
 .dropdown .dropdown-label:not(.outlier) {
   padding: 10px;
   border: 2px solid #4a89b1;
   border-radius: 10px;
   background: rgba(74, 137, 177, 0.16078);
 }
-/* line 97, ../sass/_primitives.scss */
+/* line 121, ../sass/_primitives.scss */
 .dropdown .dropdown-label .down-arrow {
   margin-left: 10px;
   height: 7px;
@@ -199,12 +220,12 @@ input:focus {
   transform: rotate(-45deg);
   transition: transform 0.5s;
 }
-/* line 106, ../sass/_primitives.scss */
+/* line 130, ../sass/_primitives.scss */
 .dropdown .dropdown-label .down-arrow.up {
   transform: rotate(135deg);
 }
 
-/* line 113, ../sass/_primitives.scss */
+/* line 137, ../sass/_primitives.scss */
 .dropdown-options {
   position: absolute;
   background: white;
@@ -213,28 +234,28 @@ input:focus {
   padding: 10px;
   max-height: 200px;
   overflow: scroll;
-  top: 40px;
-  left: 0;
+  margin-top: 10px;
+  min-width: 100%;
 }
-/* line 123, ../sass/_primitives.scss */
+/* line 148, ../sass/_primitives.scss */
 .dropdown-options li {
   cursor: pointer;
 }
-/* line 125, ../sass/_primitives.scss */
+/* line 150, ../sass/_primitives.scss */
 .dropdown-options li:hover {
   color: #4a89b1;
 }
-/* line 129, ../sass/_primitives.scss */
+/* line 154, ../sass/_primitives.scss */
 .dropdown-options li:not(:last-child) {
   margin-bottom: 25px;
 }
 
-/* line 134, ../sass/_primitives.scss */
+/* line 159, ../sass/_primitives.scss */
 .address {
   color: #205577;
   font-weight: bold;
 }
-/* line 137, ../sass/_primitives.scss */
+/* line 162, ../sass/_primitives.scss */
 .address:hover {
   border-bottom: 2px solid;
 }
@@ -272,37 +293,33 @@ input:focus {
   }
 }
 /* line 11, ../sass/screen.scss */
-html, body, #app, #top-container {
-  height: 100%;
-  min-width: 400px;
-}
-
-/* line 16, ../sass/screen.scss */
-.hidden {
-  display: none;
-}
-
-/* line 20, ../sass/screen.scss */
 #header {
   padding: 15px;
   background: #1d1b1b;
   color: white;
   display: flex;
   justify-content: space-between;
-  height: 40px;
+  height: 100px;
   align-items: center;
-  font-size: 26px;
+  font-size: 1.2em;
   font-weight: bold;
 }
-/* line 32, ../sass/screen.scss */
+@media only screen and (min-width: 481px) and (min-device-width: 401px) {
+  /* line 11, ../sass/screen.scss */
+  #header {
+    height: 40px;
+  }
+}
+
+/* line 27, ../sass/screen.scss */
 #header #profile-dropdown .dropdown-label {
   justify-content: flex-end;
 }
-/* line 34, ../sass/screen.scss */
+/* line 29, ../sass/screen.scss */
 #header #profile-dropdown .down-arrow {
   display: none;
 }
-/* line 36, ../sass/screen.scss */
+/* line 31, ../sass/screen.scss */
 #header #profile-dropdown .dropdown-options {
   position: absolute;
   right: 0px;
@@ -310,24 +327,24 @@ html, body, #app, #top-container {
   padding: 10px;
   color: black;
 }
-/* line 42, ../sass/screen.scss */
+/* line 37, ../sass/screen.scss */
 #header #profile-dropdown .dropdown-options li:not(:last-child) {
   margin-bottom: 25px;
 }
-/* line 45, ../sass/screen.scss */
+/* line 40, ../sass/screen.scss */
 #header #profile-dropdown .dropdown-options li {
-  font-size: 15px;
+  font-size: 0.75em;
 }
-/* line 47, ../sass/screen.scss */
+/* line 42, ../sass/screen.scss */
 #header #profile-dropdown .dropdown-options li:hover {
   cursor: pointer;
 }
 
-/* line 55, ../sass/screen.scss */
+/* line 50, ../sass/screen.scss */
 #auth-buttons {
   margin-right: 30px;
 }
-/* line 58, ../sass/screen.scss */
+/* line 53, ../sass/screen.scss */
 #auth-buttons button {
   border: none;
   height: 30px;
@@ -335,21 +352,21 @@ html, body, #app, #top-container {
   border-radius: 10px;
   background: none;
   color: white;
-  font-size: 15px;
+  font-size: 0.75em;
   font-weight: bold;
 }
 
-/* line 70, ../sass/screen.scss */
+/* line 65, ../sass/screen.scss */
 #loading-bar {
   height: 3px;
   background: #4a89b1;
 }
-/* line 73, ../sass/screen.scss */
+/* line 68, ../sass/screen.scss */
 #loading-bar.loading {
   background: #1d1b1b;
 }
 
-/* line 78, ../sass/screen.scss */
+/* line 73, ../sass/screen.scss */
 #loading-bar div {
   background: radial-gradient(#4a89b1 40%, #abbfb8);
   width: 200px;
@@ -364,21 +381,21 @@ html, body, #app, #top-container {
   /* IE 10+, Fx 29+ */
 }
 
-/* line 88, ../sass/screen.scss */
+/* line 83, ../sass/screen.scss */
 #main-content {
   display: flex;
   flex-flow: column nowrap;
   min-height: 100%;
   position: relative;
 }
-@media (min-width: 769px) {
-  /* line 88, ../sass/screen.scss */
+@media only screen and (min-width: 769px) and (min-device-width: 701px) {
+  /* line 83, ../sass/screen.scss */
   #main-content {
     flex-flow: row nowrap;
   }
 }
 
-/* line 98, ../sass/screen.scss */
+/* line 93, ../sass/screen.scss */
 #user-display-container {
   padding: 15px;
   padding-left: 15px;
@@ -395,32 +412,38 @@ html, body, #app, #top-container {
 
 /* line 7, ../sass/_welcomePage.scss */
 #login-modal {
-  min-width: 400px;
   display: flex;
   align-self: center;
+  min-width: 100%;
+}
+@media only screen and (min-width: 481px) and (min-device-width: 401px) {
+  /* line 7, ../sass/_welcomePage.scss */
+  #login-modal {
+    min-width: 400px;
+  }
 }
 
-/* line 13, ../sass/_welcomePage.scss */
+/* line 16, ../sass/_welcomePage.scss */
 #description-blurb {
   margin-bottom: 30px;
 }
 
-/* line 17, ../sass/_welcomePage.scss */
+/* line 20, ../sass/_welcomePage.scss */
 #login-btn {
   margin-bottom: 30px;
 }
-/* line 19, ../sass/_welcomePage.scss */
+/* line 22, ../sass/_welcomePage.scss */
 #login-btn:hover {
   cursor: pointer;
 }
 
-/* line 23, ../sass/_welcomePage.scss */
+/* line 26, ../sass/_welcomePage.scss */
 #login-form {
   display: flex;
   flex-flow: column nowrap;
   width: 100%;
 }
-/* line 28, ../sass/_welcomePage.scss */
+/* line 31, ../sass/_welcomePage.scss */
 #login-form #error-msg {
   margin-bottom: 10px;
   color: red;
@@ -430,7 +453,7 @@ html, body, #app, #top-container {
   border: 1px solid;
   border-radius: 10px;
 }
-/* line 37, ../sass/_welcomePage.scss */
+/* line 40, ../sass/_welcomePage.scss */
 #login-form #error-msg:hover {
   color: white;
   background: red;
@@ -445,43 +468,53 @@ html, body, #app, #top-container {
   padding-top: 10px;
   padding-bottom: 10px;
 }
-@media (min-width: 769px) {
+@media only screen and (max-device-width: 400px), only screen and (max-width: 480px) {
+  /* line 1, ../sass/_sideBar.scss */
+  #side-bar {
+    height: 100px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media only screen and (min-width: 769px) and (min-device-width: 701px) {
   /* line 1, ../sass/_sideBar.scss */
   #side-bar {
     padding-top: 20px;
   }
 }
 
-/* line 13, ../sass/_sideBar.scss */
+/* line 19, ../sass/_sideBar.scss */
 #side-bar-nav {
   text-decoration: none;
   color: white;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 10px 0px;
+  width: 100%;
 }
-/* line 19, ../sass/_sideBar.scss */
+/* line 27, ../sass/_sideBar.scss */
 #side-bar-nav li {
   list-style: none;
   margin-bottom: 10px;
 }
-/* line 22, ../sass/_sideBar.scss */
+/* line 31, ../sass/_sideBar.scss */
 #side-bar-nav li .nav-list-item {
   text-transform: capitalize;
   text-decoration: none;
   color: white;
 }
-/* line 27, ../sass/_sideBar.scss */
+/* line 36, ../sass/_sideBar.scss */
 #side-bar-nav li .nav-list-item:hover:not(.active) {
   color: #b0d1e6;
 }
-/* line 31, ../sass/_sideBar.scss */
+/* line 40, ../sass/_sideBar.scss */
 #side-bar-nav li .nav-list-item.active {
   color: #4a89b1;
   font-weight: bold;
 }
-@media (min-width: 769px) {
-  /* line 13, ../sass/_sideBar.scss */
+@media only screen and (min-width: 769px) and (min-device-width: 701px) {
+  /* line 19, ../sass/_sideBar.scss */
   #side-bar-nav {
     flex-flow: column nowrap;
   }
@@ -554,7 +587,7 @@ html, body, #app, #top-container {
 }
 /* line 54, ../sass/_walletPage.scss */
 #wallet-send-display form #send-error {
-  font-size: 15px;
+  font-size: 0.75em;
   text-align: center;
   color: red;
   margin-bottom: 20px;
@@ -600,111 +633,129 @@ html, body, #app, #top-container {
 
 /* line 101, ../sass/_walletPage.scss */
 #wallet-receive-display .dropdown-label {
-  max-width: 350px;
   border-bottom: 2px solid;
   padding-bottom: 15px;
 }
+@media only screen and (min-width: 481px) and (min-device-width: 401px) {
+  /* line 101, ../sass/_walletPage.scss */
+  #wallet-receive-display .dropdown-label {
+    max-width: 450px;
+  }
+}
 
-/* line 108, ../sass/_walletPage.scss */
+/* line 110, ../sass/_walletPage.scss */
 #wallets-list-container {
   margin-top: 30px;
 }
 
 /* line 1, ../sass/_transactions.scss */
-.txn-container {
-  font-size: 14px;
-  margin-bottom: 30px;
+.txns-list {
+  margin-top: 75px;
 }
-/* line 4, ../sass/_transactions.scss */
+@media only screen and (min-width: 481px) and (min-device-width: 401px) {
+  /* line 1, ../sass/_transactions.scss */
+  .txns-list {
+    margin-top: 30px;
+  }
+}
+
+/* line 8, ../sass/_transactions.scss */
+.txn-container {
+  font-size: 0.7em;
+  margin-bottom: 100px;
+}
+@media only screen and (min-width: 481px) and (min-device-width: 401px) {
+  /* line 8, ../sass/_transactions.scss */
+  .txn-container {
+    margin-bottom: 50px;
+  }
+}
+
+/* line 14, ../sass/_transactions.scss */
 .txn-container div {
   margin-bottom: 5px;
 }
 
-/* line 9, ../sass/_transactions.scss */
+/* line 19, ../sass/_transactions.scss */
 .txn-blockhash, .txn-id, .txn-confirmations {
   display: flex;
   align-items: center;
 }
-/* line 13, ../sass/_transactions.scss */
+/* line 23, ../sass/_transactions.scss */
 .txn-blockhash .txn-label, .txn-id .txn-label, .txn-confirmations .txn-label {
   margin-right: 30px;
   min-width: 100px;
 }
 
-/* line 19, ../sass/_transactions.scss */
+/* line 29, ../sass/_transactions.scss */
 .txn-blockhash a, .txn-id a {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   color: lightgrey;
 }
-/* line 22, ../sass/_transactions.scss */
+/* line 32, ../sass/_transactions.scss */
 .txn-blockhash a:hover, .txn-id a:hover {
   cursor: pointer;
   border-bottom: 2px solid;
 }
 
-/* line 25, ../sass/_transactions.scss */
+/* line 35, ../sass/_transactions.scss */
 .txn-value {
   font-weight: bold;
 }
 
-/* line 28, ../sass/_transactions.scss */
+/* line 38, ../sass/_transactions.scss */
 .outgoing .txn-value {
   color: red;
 }
 
-/* line 32, ../sass/_transactions.scss */
+/* line 42, ../sass/_transactions.scss */
 .incoming .txn-value {
   color: #19bb21;
 }
 
-/* line 36, ../sass/_transactions.scss */
+/* line 46, ../sass/_transactions.scss */
 .address-container {
   display: flex;
   justify-content: space-between;
 }
 
-/* line 41, ../sass/_transactions.scss */
+/* line 51, ../sass/_transactions.scss */
 .status {
   color: white;
   padding: 7px;
   background: green;
 }
-/* line 45, ../sass/_transactions.scss */
+/* line 55, ../sass/_transactions.scss */
 .status .pending {
   background: yellow;
 }
 
-/* line 50, ../sass/_transactions.scss */
+/* line 60, ../sass/_transactions.scss */
 .txns-list .spinner {
   top: 10px;
 }
 
-/* line 54, ../sass/_transactions.scss */
+/* line 64, ../sass/_transactions.scss */
 #tab-options-container {
   margin: 20px 0;
   display: flex;
   flex-flow: row nowrap;
 }
-/* line 58, ../sass/_transactions.scss */
+/* line 68, ../sass/_transactions.scss */
 #tab-options-container button {
   border: none;
   padding: 5px 10px;
   border-radius: 0;
   margin-right: 10px;
 }
-/* line 63, ../sass/_transactions.scss */
+/* line 73, ../sass/_transactions.scss */
 #tab-options-container button.active {
   border-bottom: 2px solid #4a89b1;
   font-weight: bold;
 }
-/* line 67, ../sass/_transactions.scss */
+/* line 77, ../sass/_transactions.scss */
 #tab-options-container button.active:hover {
   background: none;
-}
-
-/* line 73, ../sass/_transactions.scss */
-.txns-list {
-  margin-top: 30px;
 }

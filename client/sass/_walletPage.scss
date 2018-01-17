@@ -52,7 +52,7 @@
     flex-grow : 1;
     
     #send-error {
-      font-size : 15px;
+      font-size : 0.75em; //15px;
       text-align : center;
       color : red;
       margin-bottom : 20px;
@@ -99,7 +99,9 @@
 
 #wallet-receive-display {
   .dropdown-label {
-    max-width : 350px;
+    @include setMediaFor(medium-screens) {
+      max-width : 450px;
+    }
     border-bottom : 2px solid;
     padding-bottom : 15px;
   }

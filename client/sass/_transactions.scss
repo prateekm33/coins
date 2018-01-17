@@ -1,6 +1,16 @@
+.txns-list {
+  margin-top : 75px;
+  @include setMediaFor(medium-screens) {
+    margin-top : 30px;
+  }
+}
+
 .txn-container {
-  font-size : 14px;
-  margin-bottom : 30px;
+  font-size : 0.7em;//14px;
+  margin-bottom : 100px;
+  @include setMediaFor(medium-screens) {
+    margin-bottom : 50px;
+  }
   div {
     margin-bottom : 5px;
   }
@@ -68,8 +78,4 @@
     }
 
   }
-}
-
-.txns-list {
-  margin-top : 30px;
 }

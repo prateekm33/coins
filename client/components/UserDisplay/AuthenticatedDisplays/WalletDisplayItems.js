@@ -61,7 +61,11 @@ export class WalletReceive extends React.Component {
 
   renderContent = () => {
     return (
-      <div>
+      <div style={{
+        display : 'flex',
+        flexFlow : 'column nowrap',
+        alignItems : 'center'
+      }}>
         { this.renderDropdown() }
         <canvas style={{ minHeight : '300px', minWidth : '300px' }} ref={el => {
           this.qrcanvas = el;

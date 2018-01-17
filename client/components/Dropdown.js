@@ -70,11 +70,11 @@ export default class Dropdown extends React.Component {
              onClick={this.toggleList}>
           <div>{ this.renderLabel() }</div>
           <div className="down-arrow" ref={el => this.downArrow = el}/>
-          <ul className={ulClasses} id={ids.options || ''} 
-              ref={el => this.ul = el} onClick={this.toggleList}>
-              { this.props.children }
-          </ul>
         </div>
+        <ul className={ulClasses} id={ids.options || ''} 
+            ref={el => this.ul = el} onClick={this.toggleList}>
+            { this.props.children }
+        </ul>
       </div>
     );
   }

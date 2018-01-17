@@ -5,9 +5,12 @@
 }
 
 #login-modal {
-  min-width : 400px;
   display : flex;
   align-self : center;
+  min-width : 100%;
+  @include setMediaFor(medium-screens) {
+    min-width : 400px;
+  }
 }
 
 #description-blurb {

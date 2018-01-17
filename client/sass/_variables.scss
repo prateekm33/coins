@@ -5,29 +5,37 @@ $dark-primary-color : #205577;
 $max-z-index : 1000;
 
 /*BREAKPOINT VARIABLES*/
+// TODO -- verify and fix breakpoints based off of industry standards
 $smallBreakpoint : 480px;
 $mediumBreakpoint : 768px;
+$handheld-max-device-width : 400px;
+$tablet-max-device-width : 700px;
 
 @mixin setMediaFor($media) {
-  @if $media == handhelds {
-    @media (max-width: $smallBreakpoint) {
-      
-      @content;
-      
-    }
+  @media only screen {
+    @if $media == handhelds {
 
-  }
-  @else if $media == medium-screens {
-    @media only screen and (min-width : $smallBreakpoint + 1) and (max-width : $mediumBreakpoint) { 
-      @content; 
-    }
-  }
-  @else if $media == large-screens {
+      @media (max-device-width : $handheld-max-device-width), (max-width : $smallBreakpoint) {
+        
+        @content;
+        
+      }
 
-    @media (min-width: $mediumBreakpoint + 1) {
+    } @else if $media == medium-screens {
+
+      @media (min-width : $smallBreakpoint + 1) and (min-device-width : $handheld-max-device-width + 1) { 
       
-      @content;
+        @content; 
       
+      }
+    
+    } @else if $media == large-screens {
+
+      @media (min-width : $mediumBreakpoint + 1) and (min-device-width : $tablet-max-device-width + 1) {
+        
+        @content;
+        
+      }
     }
   }
 }
@@ -37,7 +45,7 @@ $mediumBreakpoint : 768px;
 }
 
 @mixin setOverflow($type) {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: $type;
+  white-space : nowrap;
+  overflow : hidden;
+  text-overflow : $type;
 }

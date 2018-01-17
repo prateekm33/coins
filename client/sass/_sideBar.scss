@@ -5,6 +5,12 @@
   padding-top : 10px;
   padding-bottom : 10px;
 
+  @include setMediaFor(handhelds) {
+    height : 100px;
+    display : flex;
+    align-items : center;
+  }
+
   @include setMediaFor(large-screens) {
     padding-top : 20px;
   }
@@ -14,11 +20,14 @@
   text-decoration : none;
   color : white;
   display : flex;
-  justify-content : space-between;
+  justify-content : space-around;
   padding : 10px 0px;
+  width : 100%;
+
   li {
     list-style : none;
     margin-bottom : 10px;
+
     .nav-list-item {
       text-transform : capitalize;
       text-decoration : none;

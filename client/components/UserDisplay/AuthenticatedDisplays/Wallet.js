@@ -6,6 +6,7 @@ import {
   WalletSettings 
 } from './WalletDisplayItems';
 import WalletSend from './WalletSend';
+import WalletHeader from './WalletHeader';
 import { sendTransaction, getTxns } from '../../../redux/actions/walletActions';
 
 class Wallet extends React.Component {
@@ -63,14 +64,8 @@ class Wallet extends React.Component {
     const wallet = this.props.wallet;
     return (
       <div id="wallet-details-container">
-        <div style={{ display : 'flex', flexFlow : 'row', flexWrap : 'nowrap', justifyContent : 'space-between', marginBottom: '10px'}}>
-
-          { this.props.renderWalletListDropdown() }
-          
-
-          <div className="wallet-balance">{`${wallet.balance()} ${this.state.denomination.toUpperCase()}`}</div>
-        </div>
-
+        <WalletHeader dropdown={this.props.renderWalletListDropdown()} wallet={wallet} 
+                      denomination={this.state.denomination}/>
         <div id="wallet-tools-container">{ this.renderToolsList() }</div>
 
         { this.state.displayRenderFn() }

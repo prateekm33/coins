@@ -5,6 +5,7 @@ import config from '../../../../config';
 import Address from '../../Address';
 import Spinner from '../../Spinner';
 import Dropdown from '../../Dropdown';
+import WalletHeader from './WalletHeader';
 import { getExplorerURL } from '../../../utils';
 import { setActiveWallet } from '../../../redux/actions/userActions';
 
@@ -14,7 +15,8 @@ class Transactions extends React.Component {
     this.state = { 
       txns : [],
       activeIdx : 0,
-      loading : props.loading
+      loading : props.loading,
+      denomination : 'btc'
     };
     this.tabOptions = [
       "All Transactions",
@@ -124,8 +126,11 @@ class Transactions extends React.Component {
           boolean gate to the `this.renderTxns` call.
         */}
         { !this.state.loading && this.props.wallet ? 
-            this.props.showDropdown !== false && this.renderDropdown() : 
-            <Spinner />
+            this.props.showDropdown !== false && 
+              <WalletHeader dropdown={this.renderDropdown()} 
+                            wallet={this.props.wallet} 
+                            denomination={this.state.denomination}/> :
+              <Spinner />
         }
         { this.renderTabs() }
         { !this.state.loading && this.renderTxns() }

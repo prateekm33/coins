@@ -75,11 +75,15 @@ export class WalletReceive extends React.Component {
   render() {
     return (
       <div id="wallet-receive-display">
-        <div id="deposit-warning-msg" style={{ marginBottom : '30px'}}>
-          Deposit only BTC to this address. Depositing any other coin will result in a loss of funds and will be unrecoverable. 
-        </div>
         {
-          this.props.addresses ? this.renderContent() : <Spinner />
+          this.props.addresses ? 
+            [
+              <div key="wallet-receive-content-1" id="deposit-warning-msg" style={{ marginBottom : '30px'}}>
+                Deposit only BTC to this address. Depositing any other coin will result in 
+                a loss of funds and will be unrecoverable. 
+              </div>,
+              <div key="wallet-receive-content-2">{this.renderContent()}</div>
+            ] : <Spinner />
         }
       </div>
     )

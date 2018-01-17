@@ -34,15 +34,22 @@ class Wallet extends React.Component {
     };
   }
 
+  componentWillReceiveProps = nextProps => {
+    if (nextProps.wallet !== this.props.wallet) this.getWalletAddresses(nextProps.wallet);
+  }
+
+  getWalletAddresses = wallet => {
+    wallet.addresses().then(addresses => {
+      // TODO -- query for more if necessary (also need to set that up for wallets page)
+      this.setState({ addresses : addresses.addresses });
+    }).catch(err => {
+      console._error("Error getting addresses for wallet ", wallet.id());
+    });
+  }
+
   handleToolsClick = option => {
-    if (option === "Receive") {
-      this.props.wallet.addresses().then(addresses => {
-        // TODO -- query for more if necessary (also need to set that up for wallets page)
-        this.setState({ addresses : addresses.addresses });
-      }).catch(err => {
-        console._error("Error getting addresses for wallet ", this.props.wallet.id());
-      });
-    }
+    if (option === "Receive") this.getWalletAddresses(this.props.wallet);
+    
     this.setState({ displayRenderFn : this.toolsList[option], clicked : option });
   }
 
